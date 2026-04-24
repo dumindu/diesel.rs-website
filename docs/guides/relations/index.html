@@ -1,0 +1,431 @@
+<!doctype html><html lang=en-US><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=theme-color content="#535379"><meta name=robots content="/Users/nuwan/dev/learning-rust/diesel.rs-website/content/en/guides/c4.relations.md"><title>Relations · Diesel</title><meta name=description content="Diesel is the most productive way to interact with databases in Rust because of its safe and composable abstractions over queries."><link rel=canonical href=https://dumindu.github.io/diesel.rs-website/guides/relations/><link rel=manifest href=https://dumindu.github.io/diesel.rs-website/site.webmanifest><link rel=icon href=https://dumindu.github.io/diesel.rs-website/favicon.ico sizes=any><link rel=icon href=https://dumindu.github.io/diesel.rs-website/icon.svg type=image/svg+xml><link rel=apple-touch-icon href=https://dumindu.github.io/diesel.rs-website/apple-touch-icon.png><meta property="og:site_name" content="Diesel"><meta property="og:image" content="https://dumindu.github.io/diesel.rs-website/guides/relations/images/og.jpg"><meta property="og:title" content="Relations"><meta property="og:description" content="Relations - Diesel is the most productive way to interact with databases in Rust because of its safe and composable abstractions over queries."><meta property="og:type" content="article"><meta property="og:url" content="https://dumindu.github.io/diesel.rs-website/guides/relations/"><meta name=twitter:title content="Relations"><meta name=twitter:description content="Relations - Diesel is the most productive way to interact with databases in Rust because of its safe and composable abstractions over queries."><meta name=twitter:image content="https://dumindu.github.io/diesel.rs-website/guides/relations/images/og.jpg"><meta name=twitter:card content="summary_large_image"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","headline":"Relations","description":"Relations - Diesel is the most productive way to interact with databases in Rust because of its safe and composable abstractions over queries.","image":"https:\/\/dumindu.github.io\/diesel.rs-website\/guides\/relations\/images\/og.jpg","publisher":{"@type":"Organization","name":"Diesel","logo":{"@type":"ImageObject","url":"https:\/\/dumindu.github.io\/diesel.rs-website\/icon.svg"}},"dateModified":"2026-04-15T06:28:53Z","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/dumindu.github.io\/diesel.rs-website\/guides\/relations\/"}}</script><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel=stylesheet><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel=stylesheet><link href=https://dumindu.github.io/diesel.rs-website/pagefind/pagefind-component-ui.css rel=stylesheet><link rel=stylesheet href=https://dumindu.github.io/diesel.rs-website/assets/css/guides.min.c828f1ee9c6292adb03168cd5ec5c17c228efec965f5690c6b413de8bb34caaf.css integrity></head><body><header id=site-header><a id=site-header-logo href=https://dumindu.github.io/diesel.rs-website/><img src=https://dumindu.github.io/diesel.rs-website/images/logo.svg alt="Diesel Logo"></a><nav id=site-header-menu aria-label=Main><a href=https://dumindu.github.io/diesel.rs-website/news/>News
+</a><a href=https://dumindu.github.io/diesel.rs-website/guides/ class=active>Guides
+</a><a href=https://dumindu.github.io/diesel.rs-website/>API Docs
+</a><a href=https://dumindu.github.io/diesel.rs-website/>Changelog</a></nav><div id=site-header-actions><div id=search-box><pagefind-modal-trigger></pagefind-modal-trigger><pagefind-modal></pagefind-modal></div><a class=repo-link href=#><img src=https://dumindu.github.io/diesel.rs-website/images/github-logo.svg alt="GitHub Logo"></a></div></header><nav id=mobile-sidebar-controls aria-label="Mobile Sidebar Controls"><button id=left-sidebar-open-button class=btn aria-label="Open Guides Menu">
+<span aria-hidden=true class=material-symbols-outlined>side_navigation</span>
+<span>On this section</span>
+</button>
+<button id=right-sidebar-open-button class=btn aria-label="Open Page Table of Contents">
+<span>On this page</span>
+<span aria-hidden=true class=material-symbols-outlined>list_alt</span></button></nav><aside id=left-sidebar><div class=sidebar-controls><button id=left-sidebar-close-button class=btn aria-label="Close Guides Menu">
+<span>Close</span>
+<span aria-hidden=true class=material-symbols-outlined>close</span></button></div><header><h2>Guides</h2><p>Diesel 2.3.7</p></header><nav id=left-sidebar-nav aria-label=Guides><details open><summary>Overview</summary><ul><li><a href=https://dumindu.github.io/diesel.rs-website/guides/compare-diesel/>Compare Diesel</a></li><li><a href=https://dumindu.github.io/diesel.rs-website/guides/diesel-2-0-migration-guide/>Diesel 2.0 migration guide</a></li></ul></details><details open><summary>Getting Started</summary><ul><li><a href=https://dumindu.github.io/diesel.rs-website/guides/getting-started-with-diesel/>Getting Started with Diesel</a></li><li><a href=https://dumindu.github.io/diesel.rs-website/guides/configuring-diesel-cli/>Configuring Diesel CLI</a></li></ul></details><details open><summary>Basics Queries</summary><ul><li><a href=https://dumindu.github.io/diesel.rs-website/guides/all-about-inserts/>All About Inserts</a></li><li><a href=https://dumindu.github.io/diesel.rs-website/guides/all-about-selects/>All About Selects</a></li><li><a href=https://dumindu.github.io/diesel.rs-website/guides/all-about-updates/>All About Updates</a></li><li><a href=https://dumindu.github.io/diesel.rs-website/guides/relations/ class=active aria-current=page>Relations</a></li></ul></details><details open><summary>Structure Your Application</summary><ul><li><a href=https://dumindu.github.io/diesel.rs-website/guides/composing-applications-with-diesel/>Composing Applications with Diesel</a></li><li><a href=https://dumindu.github.io/diesel.rs-website/guides/extending-diesel/>Extending Diesel</a></li></ul></details><details open><summary>Advanced Topics</summary><ul><li><a href=https://dumindu.github.io/diesel.rs-website/guides/schema-in-depth/>Schema in Depth</a></li></ul></details></nav></aside><main><article id=main-content aria-labelledby=main-content-heading aria-describedby=main-content-summary><header id=main-content-header><h1 id=main-content-heading>Relations</h1></header><div id=main-content-body><p>For this guide, we&rsquo;re going to look at joins, 1-to-many and many-to-many relations in Diesel.
+Each step in this guide will build on the previous, and is meant to be followed along.</p><p><strong>This guide assumes that you have gone through the <a href=/guides/getting-started/>Getting Started Guide</a></strong></p><h2 id=new-project>New project</h2><p>Let&rsquo;s make a new project for this guide:</p><div class="code-window highlight"><div class=code-header><div class=traffic-lights><div class="light light-red"></div><div class="light light-yellow"></div><div class="light light-green"></div></div><span class=code-title>Generate a new project</span><div></div></div><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-sh data-lang=sh>
+					
+						<span class=line><span class=cl>cargo new --lib diesel_relations
+</span></span><span class=line><span class=cl><span class=nb>cd</span> diesel_relations</span></span>
+					
+				</code>
+		</pre></div></div><p>As before, let&rsquo;s add Diesel and dotenvy to our dependencies.</p><div class="code-window highlight"><div class=code-header><div class=traffic-lights><div class="light light-red"></div><div class="light light-yellow"></div><div class="light light-green"></div></div><span class=code-title>Add dependencies</span><div></div></div><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-sh data-lang=sh>
+					
+						<span class=line><span class=cl>cargo add diesel --features <span class=s2>&#34;postgres&#34;</span>
+</span></span><span class=line><span class=cl>cargo add dotenvy</span></span>
+					
+				</code>
+		</pre></div></div><p>Your <code>Cargo.toml</code> file should now contain entries similar to the following ones:</p><div class="code-window highlight"><div class=code-header><div class=traffic-lights><div class="light light-red"></div><div class="light light-yellow"></div><div class="light light-green"></div></div><span class=code-title>Cargo.toml</span><div><a href=https://github.com/diesel-rs/diesel/blob/2.3.x/examples/postgres/relations/Cargo.toml#L8-L10 class=code-label>Source</a></div></div><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-toml data-lang=toml>
+					
+						<span class=line><span class=cl><span class=p>[</span><span class=nx>dependencies</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=nx>diesel</span> <span class=p>=</span> <span class=p>{</span> <span class=nx>version</span> <span class=p>=</span> <span class=s2>&#34;2.1.0&#34;</span><span class=p>,</span> <span class=nx>features</span> <span class=p>=</span> <span class=p>[</span><span class=s2>&#34;postgres&#34;</span><span class=p>]</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=nx>dotenvy</span> <span class=p>=</span> <span class=s2>&#34;0.15.6&#34;</span></span></span>
+					
+				</code>
+		</pre></div></div><p>And a <code>.env</code> to point Diesel to the correct database.</p><div class="code-window highlight"><div class=code-header><div class=traffic-lights><div class="light light-red"></div><div class="light light-yellow"></div><div class="light light-green"></div></div><span class=code-title>.env</span><div></div></div><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-sh data-lang=sh>
+					
+						<span class=line><span class=cl><span class=nb>echo</span> <span class=nv>DATABASE_URL</span><span class=o>=</span>postgres://username:password@localhost/diesel_relations &gt; .env</span></span>
+					
+				</code>
+		</pre></div></div><p>Now we can set up Diesel by running:</p><div class="code-window highlight"><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-sh data-lang=sh>
+					
+						<span class=line><span class=cl>diesel setup</span></span>
+					
+				</code>
+		</pre></div></div><h2 id=1-to-many-or-1m>1-to-many or 1:m</h2><p>We need to create two different objects that we want to connect, for the first
+1-to-many example let&rsquo;s create books and pages. A book can have many pages, but
+a page can only belong to a single book.</p><h2 id=migrations>Migrations</h2><div class="code-window highlight"><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-sh data-lang=sh>
+					
+						<span class=line><span class=cl>diesel migration generate create_books
+</span></span><span class=line><span class=cl>diesel migration generate create_pages</span></span>
+					
+				</code>
+		</pre></div></div><p>Next, we&rsquo;ll write the SQL for the book migration, which should be straight forward:</p><div class="code-window highlight"><div class=code-header><div class=traffic-lights><div class="light light-red"></div><div class="light light-yellow"></div><div class="light light-green"></div></div><span class=code-title>up.sql</span><div><a href=https://github.com/diesel-rs/diesel/blob/2.3.x/examples/postgres/relations/migrations/2023-02-08-193717_create_books/up.sql class=code-label>Source</a></div></div><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-sql data-lang=sql>
+					
+						<span class=line><span class=cl><span class=k>CREATE</span><span class=w> </span><span class=k>TABLE</span><span class=w> </span><span class=n>books</span><span class=w> </span><span class=p>(</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>id</span><span class=w> </span><span class=nb>SERIAL</span><span class=w> </span><span class=k>PRIMARY</span><span class=w> </span><span class=k>KEY</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>title</span><span class=w> </span><span class=nb>VARCHAR</span><span class=w> </span><span class=k>NOT</span><span class=w> </span><span class=k>NULL</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>);</span></span></span>
+					
+				</code>
+		</pre></div></div><p>The pages migration needs to point to the book they appear in, therefore we add a reference to the book to the migration:</p><div class="code-window highlight"><div class=code-header><div class=traffic-lights><div class="light light-red"></div><div class="light light-yellow"></div><div class="light light-green"></div></div><span class=code-title>up.sql</span><div><a href=https://github.com/diesel-rs/diesel/blob/2.3.x/examples/postgres/relations/migrations/2023-02-08-193718_create_pages/up.sql class=code-label>Source</a></div></div><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-sql data-lang=sql>
+					
+						<span class=line><span class=cl><span class=k>CREATE</span><span class=w> </span><span class=k>TABLE</span><span class=w> </span><span class=n>pages</span><span class=w> </span><span class=p>(</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>id</span><span class=w> </span><span class=nb>SERIAL</span><span class=w> </span><span class=k>PRIMARY</span><span class=w> </span><span class=k>KEY</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>page_number</span><span class=w> </span><span class=nb>INT</span><span class=w> </span><span class=k>NOT</span><span class=w> </span><span class=k>NULL</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>content</span><span class=w> </span><span class=nb>TEXT</span><span class=w> </span><span class=k>NOT</span><span class=w> </span><span class=k>NULL</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>book_id</span><span class=w> </span><span class=nb>INTEGER</span><span class=w> </span><span class=k>NOT</span><span class=w> </span><span class=k>NULL</span><span class=w> </span><span class=k>REFERENCES</span><span class=w> </span><span class=n>books</span><span class=p>(</span><span class=n>id</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>);</span></span></span>
+					
+				</code>
+		</pre></div></div><p>Let&rsquo;s add the corresponding down migrations as well:</p><div class="code-window highlight"><div class=code-header><div class=traffic-lights><div class="light light-red"></div><div class="light light-yellow"></div><div class="light light-green"></div></div><span class=code-title>down.sql</span><div><a href=https://github.com/diesel-rs/diesel/tree/2.3.x/examples/postgres/relations/migrations/2023-02-08-193717_create_books/down.sql class=code-label>Source</a></div></div><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-sql data-lang=sql>
+					
+						<span class=line><span class=cl><span class=k>DROP</span><span class=w> </span><span class=k>TABLE</span><span class=w> </span><span class=n>books</span><span class=p>;</span></span></span>
+					
+				</code>
+		</pre></div></div><p>and again for pages</p><div class="code-window highlight"><div class=code-header><div class=traffic-lights><div class="light light-red"></div><div class="light light-yellow"></div><div class="light light-green"></div></div><span class=code-title>down.sql</span><div><a href=https://github.com/diesel-rs/diesel/tree/2.3.x/examples/postgres/relations/migrations/2023-02-08-193718_create_pages/down.sql class=code-label>Source</a></div></div><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-sql data-lang=sql>
+					
+						<span class=line><span class=cl><span class=k>DROP</span><span class=w> </span><span class=k>TABLE</span><span class=w> </span><span class=n>pages</span><span class=p>;</span></span></span>
+					
+				</code>
+		</pre></div></div><p>We can apply our new migration:</p><div class="code-window highlight"><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-sh data-lang=sh>
+					
+						<span class=line><span class=cl>diesel migration run</span></span>
+					
+				</code>
+		</pre></div></div><p>Let&rsquo;s make sure the down migrations are correct too:</p><div class="code-window highlight"><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-sh data-lang=sh>
+					
+						<span class=line><span class=cl>diesel migration redo -n <span class=m>2</span></span></span>
+					
+				</code>
+		</pre></div></div><h2 id=schemars>Schema.rs</h2><p>The generated schema should now look like this:</p><div class="code-window highlight"><div class=code-header><div class=traffic-lights><div class="light light-red"></div><div class="light light-yellow"></div><div class="light light-green"></div></div><span class=code-title>schema.rs</span><div><a href=https://github.com/diesel-rs/diesel/blob/2.3.x/examples/postgres/relations/src/schema.rs class=code-label>Source</a></div></div><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-rust data-lang=rust>
+					
+						<span class=line><span class=cl><span class=c1>// @generated automatically by Diesel CLI.
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=n>diesel</span>::<span class=fm>table!</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>books</span><span class=w> </span><span class=p>(</span><span class=n>id</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>id</span><span class=w> </span>-&gt; <span class=nc>Int4</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>title</span><span class=w> </span>-&gt; <span class=nc>Varchar</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=n>diesel</span>::<span class=fm>table!</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>pages</span><span class=w> </span><span class=p>(</span><span class=n>id</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>id</span><span class=w> </span>-&gt; <span class=nc>Int4</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>page_number</span><span class=w> </span>-&gt; <span class=nc>Int4</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>content</span><span class=w> </span>-&gt; <span class=nc>Text</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>book_id</span><span class=w> </span>-&gt; <span class=nc>Int4</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=n>diesel</span>::<span class=fm>joinable!</span><span class=p>(</span><span class=n>pages</span><span class=w> </span>-&gt; <span class=nc>books</span><span class=w> </span><span class=p>(</span><span class=n>book_id</span><span class=p>));</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=n>diesel</span>::<span class=fm>allow_tables_to_appear_in_same_query!</span><span class=p>(</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>books</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>pages</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>);</span></span></span>
+					
+				</code>
+		</pre></div></div><p>Diesel picked up on the foreign key references. It created a schema for us that has pages as
+joinable into books via the <code>book_id</code> and allows for the two to appear in the
+same query. This allows to join this table without specify an explicit <code>ON</code> clause. Diesel generates these <code>joinable!</code> instances only for cases where there is only a single relation between two tables based on a non-composite foreign key. All other cases require to specify an explicit the <code>ON</code> clause while constructing such joins.</p><h2 id=models>Models</h2><p>Let&rsquo;s reflect this now in our <code>model.rs</code></p><div class="code-window highlight"><div class=code-header><div class=traffic-lights><div class="light light-red"></div><div class="light light-yellow"></div><div class="light light-green"></div></div><span class=code-title>src/model.rs</span><div><a href=https://github.com/diesel-rs/diesel/blob/2.3.x/examples/postgres/relations/src/model.rs#L22-L38 class=code-label>Source</a></div></div><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-rust data-lang=rust>
+					
+						<span class=line><span class=cl><span class=k>use</span><span class=w> </span><span class=n>diesel</span>::<span class=n>prelude</span>::<span class=o>*</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=k>use</span><span class=w> </span><span class=k>crate</span>::<span class=n>schema</span>::<span class=p>{</span><span class=n>books</span><span class=p>,</span><span class=w> </span><span class=n>pages</span><span class=p>};</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=cp>#[derive(Queryable, Identifiable, Selectable, Debug, PartialEq)]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=cp>#[diesel(table_name = books)]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=k>pub</span><span class=w> </span><span class=k>struct</span> <span class=nc>Book</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=k>pub</span><span class=w> </span><span class=n>id</span>: <span class=kt>i32</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=k>pub</span><span class=w> </span><span class=n>title</span>: <span class=nb>String</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=cp>#[derive(Queryable, Selectable, Identifiable, Associations, Debug, PartialEq)]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=cp>#[diesel(belongs_to(Book))]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=cp>#[diesel(table_name = pages)]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=k>pub</span><span class=w> </span><span class=k>struct</span> <span class=nc>Page</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=k>pub</span><span class=w> </span><span class=n>id</span>: <span class=kt>i32</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=k>pub</span><span class=w> </span><span class=n>page_number</span>: <span class=kt>i32</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=k>pub</span><span class=w> </span><span class=n>content</span>: <span class=nb>String</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=k>pub</span><span class=w> </span><span class=n>book_id</span>: <span class=kt>i32</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span></span></span>
+					
+				</code>
+		</pre></div></div><p>Associations in Diesel are always child-to-parent. You can declare an
+association between two records with <code>#[diesel(belongs_to)]</code>. First we need to add
+<a href=https://docs.diesel.rs/2.3.x/diesel/associations/derive.Associations.html><code>#[derive(Associations)]</code></a>
+, which will allow us to add <code>#[diesel(belongs_to(Book))]</code> to <code>Page</code>.
+That tells that pages belong to books and thereby reflect our 1-to-many relation.</p><p>By default diesel will assume that your struct contains a field with the lower case
+remote type name appended with <code>_id</code>. So for the given example <code>book_id</code>. If your
+foreign key field has a different name you can specify that via the <code>foreign_key</code> option:
+<code>#[diesel(belongs_to(Book, foreign_key = book_id))]</code></p><h2 id=reading-data>Reading data</h2><p>For ease of following this tutorial, we are going to put all the code into <code>main.rs</code>. We create a separate function for each part of the guide. See the linked code for the complete file content.</p><div class="code-window highlight"><div class=code-header><div class=traffic-lights><div class="light light-red"></div><div class="light light-yellow"></div><div class="light light-green"></div></div><span class=code-title>src/main.rs</span><div><a href=https://github.com/diesel-rs/diesel/blob/2.3.x/examples/postgres/relations/src/main.rs#L88-L98 class=code-label>Source</a></div></div><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-rust data-lang=rust>
+					
+						<span class=line><span class=cl><span class=kd>let</span><span class=w> </span><span class=n>momo</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>books</span>::<span class=n>table</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>filter</span><span class=p>(</span><span class=n>books</span>::<span class=n>title</span><span class=p>.</span><span class=n>eq</span><span class=p>(</span><span class=s>&#34;Momo&#34;</span><span class=p>))</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>select</span><span class=p>(</span><span class=n>Book</span>::<span class=n>as_select</span><span class=p>())</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>get_result</span><span class=p>(</span><span class=n>conn</span><span class=p>)</span><span class=o>?</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=c1>// get pages for a book
+</span></span></span><span class=line><span class=cl><span class=kd>let</span><span class=w> </span><span class=n>pages</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>Page</span>::<span class=n>belonging_to</span><span class=p>(</span><span class=o>&amp;</span><span class=n>momo</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>select</span><span class=p>(</span><span class=n>Page</span>::<span class=n>as_select</span><span class=p>())</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>load</span><span class=p>(</span><span class=n>conn</span><span class=p>)</span><span class=o>?</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=fm>println!</span><span class=p>(</span><span class=s>&#34;Pages for </span><span class=se>\&#34;</span><span class=s>Momo</span><span class=se>\&#34;</span><span class=s>: </span><span class=se>\n</span><span class=s> </span><span class=si>{pages:?}</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>);</span></span></span>
+					
+				</code>
+		</pre></div></div><p><a href=https://docs.diesel.rs/2.3.x/diesel/prelude/trait.BelongingToDsl.html><code>Page::belonging_to</code></a> allows to query all child records related to one or more
+parent record. For the presented case it will load all pages for the book with the title &ldquo;Momo&rdquo;.
+This function generates a query for loading these data. It does not execute the query, so that
+it is possible to add additional clauses to the query later on.
+The generated query is equivalent to <code>SELECT * FROM pages WHERE book_id IN(…)</code> with
+a list of given book ids derived from the function input.</p><p>Loading all pages for a single book is a straight forward query, it becomes more complicated if we
+want to load all pages per book. This is a classic ORM problem, where frameworks sometimes run in
+the so called N+1 query problem. That problem describes cases where a framework naively loads all
+books first and then execute one query per book to receive the relevant pages. This approach is bad
+for performance because it executes an unbound number of queries.</p><p>Diesel&rsquo;s <a href=https://docs.diesel.rs/2.3.x/diesel/associations/index.html>associations API</a> sidesteps that problem by providing a special tailored API for such cases:</p><div class="code-window highlight"><div class=code-header><div class=traffic-lights><div class="light light-red"></div><div class="light light-yellow"></div><div class="light light-green"></div></div><span class=code-title>src/main.rs</span><div><a href=https://github.com/diesel-rs/diesel/blob/2.3.x/examples/postgres/relations/src/main.rs#L100-L115 class=code-label>Source</a></div></div><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-rust data-lang=rust>
+					
+						<span class=line><span class=cl><span class=kd>let</span><span class=w> </span><span class=n>all_books</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>books</span>::<span class=n>table</span><span class=p>.</span><span class=n>select</span><span class=p>(</span><span class=n>Book</span>::<span class=n>as_select</span><span class=p>()).</span><span class=n>load</span><span class=p>(</span><span class=n>conn</span><span class=p>)</span><span class=o>?</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=c1>// get all pages for all books
+</span></span></span><span class=line><span class=cl><span class=kd>let</span><span class=w> </span><span class=n>pages</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>Page</span>::<span class=n>belonging_to</span><span class=p>(</span><span class=o>&amp;</span><span class=n>all_books</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>select</span><span class=p>(</span><span class=n>Page</span>::<span class=n>as_select</span><span class=p>())</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>load</span><span class=p>(</span><span class=n>conn</span><span class=p>)</span><span class=o>?</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=c1>// group the pages per book
+</span></span></span><span class=line><span class=cl><span class=kd>let</span><span class=w> </span><span class=n>pages_per_book</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>pages</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>grouped_by</span><span class=p>(</span><span class=o>&amp;</span><span class=n>all_books</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>into_iter</span><span class=p>()</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>zip</span><span class=p>(</span><span class=n>all_books</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>map</span><span class=p>(</span><span class=o>|</span><span class=p>(</span><span class=n>pages</span><span class=p>,</span><span class=w> </span><span class=n>book</span><span class=p>)</span><span class=o>|</span><span class=w> </span><span class=p>(</span><span class=n>book</span><span class=p>,</span><span class=w> </span><span class=n>pages</span><span class=p>))</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>collect</span>::<span class=o>&lt;</span><span class=nb>Vec</span><span class=o>&lt;</span><span class=p>(</span><span class=n>Book</span><span class=p>,</span><span class=w> </span><span class=nb>Vec</span><span class=o>&lt;</span><span class=n>Page</span><span class=o>&gt;</span><span class=p>)</span><span class=o>&gt;&gt;</span><span class=p>();</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=fm>println!</span><span class=p>(</span><span class=s>&#34;Pages per book: </span><span class=se>\n</span><span class=s> </span><span class=si>{pages_per_book:?}</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>);</span></span></span>
+					
+				</code>
+		</pre></div></div><p>Here we use a similar construct as before to load all pages for a given list of books by constructing the
+relevant query via <code>Page::belonging_to</code>. The important difference to before is that we now pass a slice of books
+as argument. This will again construct the equivalent of the <code>SELECT * FROM pages WHERE book_id IN(…)</code> query as
+before. The important difference here is that we use the <a href=https://docs.diesel.rs/2.3.x/diesel/associations/trait.GroupedBy.html><code>.grouped_by</code></a> function to later group each page to the
+correct book. In total there are two queries executed in this code block, independently of the number of queried books and pages.</p><div class="alert alert-note"><div class=alert-header><span class=material-symbols-outlined>info</span>
+<span>A note on consuming these data</span></div><div class=alert-body><p>A common use case for loading associated data is to return a serialized data structure like</p><div class="code-window highlight"><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-json data-lang=json>
+					
+						<span class=line><span class=cl><span class=p>[{</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;id&#34;</span><span class=p>:</span> <span class=mi>1</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;title&#34;</span><span class=p>:</span> <span class=s2>&#34;Momo&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;pages&#34;</span><span class=p>:</span> <span class=p>[</span><span class=err>…</span><span class=p>],</span>
+</span></span><span class=line><span class=cl><span class=p>}]</span></span></span>
+					
+				</code>
+		</pre></div></div><p>Given the API provided by diesel, such a structure can easily be implemented by collecting the data in a struct with named fields instead of a tuple and using <a href=https://serde.rs/field-attrs.html#flatten><code>#[serde(flatten)]</code></a> on the relevant fields.</p><div class="code-window highlight"><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-rust data-lang=rust>
+					
+						<span class=line><span class=cl><span class=cp>#[derive(Serialize)]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=k>struct</span> <span class=nc>BookWithPages</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=cp>#[serde(flatten)]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>book</span>: <span class=nc>Book</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>pages</span>: <span class=nb>Vec</span><span class=o>&lt;</span><span class=n>Page</span><span class=o>&gt;</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=c1>// group the pages per book
+</span></span></span><span class=line><span class=cl><span class=kd>let</span><span class=w> </span><span class=n>pages_per_book</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>pages</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>grouped_by</span><span class=p>(</span><span class=o>&amp;</span><span class=n>all_books</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>into_iter</span><span class=p>()</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>zip</span><span class=p>(</span><span class=n>all_books</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>map</span><span class=p>(</span><span class=o>|</span><span class=p>(</span><span class=n>pages</span><span class=p>,</span><span class=w> </span><span class=n>book</span><span class=p>)</span><span class=o>|</span><span class=w> </span><span class=n>BookWithPages</span><span class=w> </span><span class=p>{</span><span class=w> </span><span class=n>book</span><span class=p>,</span><span class=w> </span><span class=n>pages</span><span class=w> </span><span class=p>})</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>collect</span>::<span class=o>&lt;</span><span class=nb>Vec</span><span class=o>&lt;</span><span class=n>BookWithPages</span><span class=o>&gt;&gt;</span><span class=p>();</span></span></span>
+					
+				</code>
+		</pre></div></div></div></div><h2 id=joins>Joins</h2><p>We have currently loaded all pages for a given book by using the API provided by the <code>diesel::associations</code> module.
+This API is designed to work for parent-child relations, but not the other way around. Using plain SQL joins is
+the preferred way to resolve such relations the other way around. Diesel provides two kinds of joins: <code>INNER JOIN</code> and <code>LEFT JOIN</code>, where the former expects that linked elements always exist. The latter allows to include rows with missing linked elements. Both constructs load data by executing a single query.</p><h3 id=inner-join><code>INNER JOIN</code></h3><p><a href=https://docs.diesel.rs/2.3.x/diesel/prelude/trait.QueryDsl.html#method.inner_join><code>QueryDsl::inner_join</code></a> allows to construct <code>INNER JOIN</code> statements between different tables.</p><div class="code-window highlight"><div class=code-header><div class=traffic-lights><div class="light light-red"></div><div class="light light-yellow"></div><div class="light light-green"></div></div><span class=code-title>src/main.rs</span><div><a href=https://github.com/diesel-rs/diesel/blob/2.3.x/examples/postgres/relations/src/main.rs#L70-L76 class=code-label>Source</a></div></div><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-rust data-lang=rust>
+					
+						<span class=line><span class=cl><span class=kd>let</span><span class=w> </span><span class=n>page_with_book</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>pages</span>::<span class=n>table</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>inner_join</span><span class=p>(</span><span class=n>books</span>::<span class=n>table</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>filter</span><span class=p>(</span><span class=n>books</span>::<span class=n>title</span><span class=p>.</span><span class=n>eq</span><span class=p>(</span><span class=s>&#34;Momo&#34;</span><span class=p>))</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>select</span><span class=p>((</span><span class=n>Page</span>::<span class=n>as_select</span><span class=p>(),</span><span class=w> </span><span class=n>Book</span>::<span class=n>as_select</span><span class=p>()))</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>load</span>::<span class=o>&lt;</span><span class=p>(</span><span class=n>Page</span><span class=p>,</span><span class=w> </span><span class=n>Book</span><span class=p>)</span><span class=o>&gt;</span><span class=p>(</span><span class=n>conn</span><span class=p>)</span><span class=o>?</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=fm>println!</span><span class=p>(</span><span class=s>&#34;Page-Book pairs: </span><span class=si>{page_with_book:?}</span><span class=s>&#34;</span><span class=p>);</span></span></span>
+					
+				</code>
+		</pre></div></div><p><code>QueryDsl::inner_join()</code> modifies the constructed query to include a <code>INNER JOIN</code> clause based on the provided arguments. The <code>ON</code> clause of the join statement can be
+inferred based on the <a href=https://docs.diesel.rs/2.3.x/diesel/macro.joinable.html><code>joinable!</code></a> call in your <code>schema.rs</code> file. In addition it&rsquo;s possible to specify custom <code>ON</code> clauses via <a href=https://docs.diesel.rs/2.3.x/diesel/query_dsl/trait.JoinOnDsl.html#method.on><code>JoinDsl::on</code></a>.
+If no explicit select clause is provided the constructed query will return a tuple of both default select clauses for both sides of the join. This can be deserialized
+to a rust tuple or any compatible type implementing <a href=https://docs.diesel.rs/2.3.x/diesel/deserialize/trait.Queryable.html><code>Queryable</code></a>.</p><p>It is possible to chain several joins to join multiple tables. The nesting of the joins controls which tables exactly are joined. This means the following two statements are not equal:</p><div class="code-window highlight"><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-rust data-lang=rust>
+					
+						<span class=line><span class=cl><span class=n>users</span>::<span class=n>table</span><span class=p>.</span><span class=n>inner_join</span><span class=p>(</span><span class=n>posts</span>::<span class=n>table</span><span class=p>.</span><span class=n>inner_join</span><span class=p>(</span><span class=n>comments</span>::<span class=n>table</span><span class=p>));</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=c1>// Results in the following SQL
+</span></span></span><span class=line><span class=cl><span class=c1>// SELECT * FROM users
+</span></span></span><span class=line><span class=cl><span class=c1>// INNER JOIN posts ON users.id = posts.user_id
+</span></span></span><span class=line><span class=cl><span class=c1>// INNER JOIN comments ON post.id = comments.post_id
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=n>users</span>::<span class=n>table</span><span class=p>.</span><span class=n>inner_join</span><span class=p>(</span><span class=n>posts</span>::<span class=n>table</span><span class=p>).</span><span class=n>inner_join</span><span class=p>(</span><span class=n>comments</span>::<span class=n>table</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=c1>// Results in the following SQL
+</span></span></span><span class=line><span class=cl><span class=c1>// SELECT * FROM users
+</span></span></span><span class=line><span class=cl><span class=c1>// INNER JOIN posts ON users.id = posts.user_id
+</span></span></span><span class=line><span class=cl><span class=c1>// INNER JOIN comments ON users.id = comments.user_id
+</span></span></span>
+					
+				</code>
+		</pre></div></div><p>For joining the same table more than once, refer to the <a href=https://docs.diesel.rs/2.3.x/diesel/macro.alias.html><code>alias!</code></a> macro to create distinct aliases.</p><h3 id=left-join><code>LEFT JOIN</code></h3><p><a href=https://docs.diesel.rs/2.3.x/diesel/prelude/trait.QueryDsl.html#method.left_join><code>QueryDsl::left_join</code></a> allows to construct <code>LEFT JOIN</code> statements between different tables.</p><div class="code-window highlight"><div class=code-header><div class=traffic-lights><div class="light light-red"></div><div class="light light-yellow"></div><div class="light light-green"></div></div><span class=code-title>src/main.rs</span><div><a href=https://github.com/diesel-rs/diesel/blob/2.3.x/examples/postgres/relations/src/main.rs#L78-L83 class=code-label>Source</a></div></div><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-rust data-lang=rust>
+					
+						<span class=line><span class=cl><span class=kd>let</span><span class=w> </span><span class=n>book_without_pages</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>books</span>::<span class=n>table</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>left_join</span><span class=p>(</span><span class=n>pages</span>::<span class=n>table</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>select</span><span class=p>((</span><span class=n>Book</span>::<span class=n>as_select</span><span class=p>(),</span><span class=w> </span><span class=nb>Option</span>::<span class=o>&lt;</span><span class=n>Page</span><span class=o>&gt;</span>::<span class=n>as_select</span><span class=p>()))</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>load</span>::<span class=o>&lt;</span><span class=p>(</span><span class=n>Book</span><span class=p>,</span><span class=w> </span><span class=nb>Option</span><span class=o>&lt;</span><span class=n>Page</span><span class=o>&gt;</span><span class=p>)</span><span class=o>&gt;</span><span class=p>(</span><span class=n>conn</span><span class=p>)</span><span class=o>?</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=fm>println!</span><span class=p>(</span><span class=s>&#34;Book-Page pairs (including empty books): </span><span class=si>{book_without_pages:?}</span><span class=s>&#34;</span><span class=p>);</span></span></span>
+					
+				</code>
+		</pre></div></div><p>This works similar to <code>QueryDsl::inner_join</code> with the notable difference that any column returned from a joined table is considered to be nullable. This has several consequences:</p><ul><li>A query like <code>books::table.left_join(pages::table).load(conn)</code> returns <code>(Book, Option&lt;Page>)</code> or any compatible type</li><li>Explicit calls to <a href=https://docs.diesel.rs/2.3.x/diesel/prelude/trait.QueryDsl.html#method.select><code>QueryDsl::select</code></a> require
+that any column that comes from the left joined table is annotated with a <a href=https://docs.diesel.rs/2.3.x/diesel/expression_methods/trait.NullableExpressionMethods.html#method.nullable><code>NullableExpressionMethods::nullable</code></a> call.
+This function can be called for individual columns, expressions or tuples containing columns form left joined tables.</li></ul><h2 id=many-to-many-or-mn>many-to-many or m:n</h2><p>We currently have books and they have pages, but books have an author, too. To
+be precise, a book can have more than one author and an author can have more
+than one book. So we have a many-to-many relation here. Diesel does not have a
+concept of <code>has_many</code> but instead we are going create a &ldquo;join table&rdquo;
+<code>books_authors</code> and add a <code>belongs_to</code> to both <code>books</code> and <code>authors</code>. Let&rsquo;s see
+that in action.</p><h2 id=migrations-1>Migrations</h2><div class="code-window highlight"><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-sh data-lang=sh>
+					
+						<span class=line><span class=cl>diesel migration generate create_authors
+</span></span><span class=line><span class=cl>diesel migration generate create_books_authors</span></span>
+					
+				</code>
+		</pre></div></div><p>Let&rsquo;s keep it simple and just give our <code>authors</code> a name.</p><div class="code-window highlight"><div class=code-header><div class=traffic-lights><div class="light light-red"></div><div class="light light-yellow"></div><div class="light light-green"></div></div><span class=code-title>up.sql</span><div><a href=https://github.com/diesel-rs/diesel/blob/2.3.x/examples/postgres/relations/migrations/2023-02-17-084424_add_authors/up.sql class=code-label>Source</a></div></div><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-sql data-lang=sql>
+					
+						<span class=line><span class=cl><span class=k>CREATE</span><span class=w> </span><span class=k>TABLE</span><span class=w> </span><span class=n>authors</span><span class=w> </span><span class=p>(</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>id</span><span class=w> </span><span class=nb>SERIAL</span><span class=w> </span><span class=k>PRIMARY</span><span class=w> </span><span class=k>KEY</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>name</span><span class=w> </span><span class=nb>VARCHAR</span><span class=w> </span><span class=k>NOT</span><span class=w> </span><span class=k>NULL</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>);</span></span></span>
+					
+				</code>
+		</pre></div></div><p>And the corresponding down migration.</p><div class="code-window highlight"><div class=code-header><div class=traffic-lights><div class="light light-red"></div><div class="light light-yellow"></div><div class="light light-green"></div></div><span class=code-title>down.sql</span><div><a href=https://github.com/diesel-rs/diesel/blob/2.3.x/examples/postgres/relations/migrations/2023-02-17-084424_add_authors/down.sql class=code-label>Source</a></div></div><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-sql data-lang=sql>
+					
+						<span class=line><span class=cl><span class=k>DROP</span><span class=w> </span><span class=k>TABLE</span><span class=w> </span><span class=n>authors</span><span class=p>;</span></span></span>
+					
+				</code>
+		</pre></div></div><p>The <code>books_authors</code> migration has two foreign keys which point to book&rsquo;s id and
+the author&rsquo;s id. This allows us to create a many-to-many relation between books
+and authors.</p><div class="code-window highlight"><div class=code-header><div class=traffic-lights><div class="light light-red"></div><div class="light light-yellow"></div><div class="light light-green"></div></div><span class=code-title>up.sql</span><div><a href=https://github.com/diesel-rs/diesel/blob/2.3.x/examples/postgres/relations/migrations/2023-02-17-084617_add_books_authors/up.sql class=code-label>Source</a></div></div><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-sql data-lang=sql>
+					
+						<span class=line><span class=cl><span class=k>CREATE</span><span class=w> </span><span class=k>TABLE</span><span class=w> </span><span class=n>books_authors</span><span class=w> </span><span class=p>(</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>book_id</span><span class=w> </span><span class=nb>INTEGER</span><span class=w> </span><span class=k>REFERENCES</span><span class=w> </span><span class=n>books</span><span class=p>(</span><span class=n>id</span><span class=p>),</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=n>author_id</span><span class=w> </span><span class=nb>INTEGER</span><span class=w> </span><span class=k>REFERENCES</span><span class=w> </span><span class=n>authors</span><span class=p>(</span><span class=n>id</span><span class=p>),</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=k>PRIMARY</span><span class=w> </span><span class=k>KEY</span><span class=p>(</span><span class=n>book_id</span><span class=p>,</span><span class=w> </span><span class=n>author_id</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>);</span></span></span>
+					
+				</code>
+		</pre></div></div><p>And the corresponding down migration.</p><div class="code-window highlight"><div class=code-header><div class=traffic-lights><div class="light light-red"></div><div class="light light-yellow"></div><div class="light light-green"></div></div><span class=code-title>down.sql</span><div><a href=https://github.com/diesel-rs/diesel/blob/2.3.x/examples/postgres/relations/migrations/2023-02-17-084617_add_books_authors/down.sql class=code-label>Source</a></div></div><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-sql data-lang=sql>
+					
+						<span class=line><span class=cl><span class=k>DROP</span><span class=w> </span><span class=k>TABLE</span><span class=w> </span><span class=n>books_authors</span><span class=p>;</span></span></span>
+					
+				</code>
+		</pre></div></div><p>Lastly, let&rsquo;s run the migrations</p><div class="code-window highlight"><div class=code-header><div class=traffic-lights><div class="light light-red"></div><div class="light light-yellow"></div><div class="light light-green"></div></div><span class=code-title>Run the migrations</span><div></div></div><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-sh data-lang=sh>
+					
+						<span class=line><span class=cl>diesel migration run
+</span></span><span class=line><span class=cl>diesel migration redo -n <span class=m>2</span></span></span>
+					
+				</code>
+		</pre></div></div><h2 id=model>Model</h2><p>Now let&rsquo;s reflect the join table in the <code>model.rs</code>. To keep this brief, let&rsquo;s only look at what we are adding.</p><div class="code-window highlight"><div class=code-header><div class=traffic-lights><div class="light light-red"></div><div class="light light-yellow"></div><div class="light light-green"></div></div><span class=code-title>src/model.rs</span><div><a href=https://github.com/diesel-rs/diesel/blob/2.3.x/examples/postgres/relations/src/model.rs#L1-L20 class=code-label>Source</a></div></div><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-rust data-lang=rust>
+					
+						<span class=line><span class=cl><span class=k>use</span><span class=w> </span><span class=n>diesel</span>::<span class=n>prelude</span>::<span class=o>*</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=k>use</span><span class=w> </span><span class=k>crate</span>::<span class=n>schema</span>::<span class=p>{</span><span class=n>books</span><span class=p>,</span><span class=w> </span><span class=n>pages</span><span class=p>,</span><span class=w> </span><span class=n>authors</span><span class=p>,</span><span class=w> </span><span class=n>books_authors</span><span class=p>};</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=cp>#[derive(Queryable, Selectable, Identifiable, PartialEq, Debug)]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=cp>#[diesel(table_name = authors)]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=k>pub</span><span class=w> </span><span class=k>struct</span> <span class=nc>Author</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=k>pub</span><span class=w> </span><span class=n>id</span>: <span class=kt>i32</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=k>pub</span><span class=w> </span><span class=n>name</span>: <span class=nb>String</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=cp>#[derive(Identifiable, Selectable, Queryable, Associations, Debug)]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=cp>#[diesel(belongs_to(Book))]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=cp>#[diesel(belongs_to(Author))]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=cp>#[diesel(table_name = books_authors)]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=cp>#[diesel(primary_key(book_id, author_id))]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=k>pub</span><span class=w> </span><span class=k>struct</span> <span class=nc>BookAuthor</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=k>pub</span><span class=w> </span><span class=n>book_id</span>: <span class=kt>i32</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=k>pub</span><span class=w> </span><span class=n>author_id</span>: <span class=kt>i32</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span></span></span>
+					
+				</code>
+		</pre></div></div><p>The important part is to give <code>BooksAuthor</code> two <code>belongs_to</code> that point to the book and the author.</p><h2 id=reading-data-1>Reading data</h2><p>If we now want to load all books of a given author we can combine joins and diesels <code>BelongingToDsl</code> to load these data:</p><div class="code-window highlight"><div class=code-header><div class=traffic-lights><div class="light light-red"></div><div class="light light-yellow"></div><div class="light light-green"></div></div><span class=code-title>src/main.rs</span><div><a href=https://github.com/diesel-rs/diesel/blob/2.3.x/examples/postgres/relations/src/main.rs#L121-L131 class=code-label>Source</a></div></div><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-rust data-lang=rust>
+					
+						<span class=line><span class=cl><span class=kd>let</span><span class=w> </span><span class=n>astrid_lindgren</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>authors</span>::<span class=n>table</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>filter</span><span class=p>(</span><span class=n>authors</span>::<span class=n>name</span><span class=p>.</span><span class=n>eq</span><span class=p>(</span><span class=s>&#34;Astrid Lindgren&#34;</span><span class=p>))</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>select</span><span class=p>(</span><span class=n>Author</span>::<span class=n>as_select</span><span class=p>())</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>get_result</span><span class=p>(</span><span class=n>conn</span><span class=p>)</span><span class=o>?</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=c1>// get all of Astrid Lindgren&#39;s books
+</span></span></span><span class=line><span class=cl><span class=kd>let</span><span class=w> </span><span class=n>books</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>BookAuthor</span>::<span class=n>belonging_to</span><span class=p>(</span><span class=o>&amp;</span><span class=n>astrid_lindgren</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>inner_join</span><span class=p>(</span><span class=n>books</span>::<span class=n>table</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>select</span><span class=p>(</span><span class=n>Book</span>::<span class=n>as_select</span><span class=p>())</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>load</span><span class=p>(</span><span class=n>conn</span><span class=p>)</span><span class=o>?</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=fm>println!</span><span class=p>(</span><span class=s>&#34;Books by Astrid Lindgren: </span><span class=si>{books:?}</span><span class=s>&#34;</span><span class=p>);</span></span></span>
+					
+				</code>
+		</pre></div></div><p>As described before <code>BookAuthor::belonging_to</code> constructs a query to which we can chain other clauses. In this case we join the <code>books</code> table to include the relevant books and select only the columns relevant for populating the <code>Book</code> type. This results in loading all books for a given author.</p><p>The same approach can be applied the other way around, to load all authors for a given book:</p><div class="code-window highlight"><div class=code-header><div class=traffic-lights><div class="light light-red"></div><div class="light light-yellow"></div><div class="light light-green"></div></div><span class=code-title>src/main.rs</span><div><a href=https://github.com/diesel-rs/diesel/blob/2.3.x/examples/postgres/relations/src/main.rs#L133-L143 class=code-label>Source</a></div></div><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-rust data-lang=rust>
+					
+						<span class=line><span class=cl><span class=kd>let</span><span class=w> </span><span class=n>collaboration</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>books</span>::<span class=n>table</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>filter</span><span class=p>(</span><span class=n>books</span>::<span class=n>title</span><span class=p>.</span><span class=n>eq</span><span class=p>(</span><span class=s>&#34;Pippi and Momo&#34;</span><span class=p>))</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>select</span><span class=p>(</span><span class=n>Book</span>::<span class=n>as_select</span><span class=p>())</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>get_result</span><span class=p>(</span><span class=n>conn</span><span class=p>)</span><span class=o>?</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=c1>// get authors for the collaboration
+</span></span></span><span class=line><span class=cl><span class=kd>let</span><span class=w> </span><span class=n>authors</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>BookAuthor</span>::<span class=n>belonging_to</span><span class=p>(</span><span class=o>&amp;</span><span class=n>collaboration</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>inner_join</span><span class=p>(</span><span class=n>authors</span>::<span class=n>table</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>select</span><span class=p>(</span><span class=n>Author</span>::<span class=n>as_select</span><span class=p>())</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>load</span><span class=p>(</span><span class=n>conn</span><span class=p>)</span><span class=o>?</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=fm>println!</span><span class=p>(</span><span class=s>&#34;Authors for </span><span class=se>\&#34;</span><span class=s>Pippi and Momo</span><span class=se>\&#34;</span><span class=s>: </span><span class=si>{authors:?}</span><span class=s>&#34;</span><span class=p>);</span></span></span>
+					
+				</code>
+		</pre></div></div><p>As before we can use this approach to load a list of all authors and their associated books:</p><div class="code-window highlight"><div class=code-header><div class=traffic-lights><div class="light light-red"></div><div class="light light-yellow"></div><div class="light light-green"></div></div><span class=code-title>src/main.rs</span><div><a href=https://github.com/diesel-rs/diesel/blob/2.3.x/examples/postgres/relations/src/main.rs#L146-L162 class=code-label>Source</a></div></div><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-rust data-lang=rust>
+					
+						<span class=line><span class=cl><span class=kd>let</span><span class=w> </span><span class=n>all_authors</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>authors</span>::<span class=n>table</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>select</span><span class=p>(</span><span class=n>Author</span>::<span class=n>as_select</span><span class=p>())</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>load</span><span class=p>(</span><span class=n>conn</span><span class=p>)</span><span class=o>?</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kd>let</span><span class=w> </span><span class=n>books</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>BookAuthor</span>::<span class=n>belonging_to</span><span class=p>(</span><span class=o>&amp;</span><span class=n>authors</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>inner_join</span><span class=p>(</span><span class=n>books</span>::<span class=n>table</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>select</span><span class=p>((</span><span class=n>BookAuthor</span>::<span class=n>as_select</span><span class=p>(),</span><span class=w> </span><span class=n>Book</span>::<span class=n>as_select</span><span class=p>()))</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>load</span><span class=p>(</span><span class=n>conn</span><span class=p>)</span><span class=o>?</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kd>let</span><span class=w> </span><span class=n>books_per_author</span>: <span class=nb>Vec</span><span class=o>&lt;</span><span class=p>(</span><span class=n>Author</span><span class=p>,</span><span class=w> </span><span class=nb>Vec</span><span class=o>&lt;</span><span class=n>Book</span><span class=o>&gt;</span><span class=p>)</span><span class=o>&gt;</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>books</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>grouped_by</span><span class=p>(</span><span class=o>&amp;</span><span class=n>all_authors</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>into_iter</span><span class=p>()</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>zip</span><span class=p>(</span><span class=n>authors</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>map</span><span class=p>(</span><span class=o>|</span><span class=p>(</span><span class=n>b</span><span class=p>,</span><span class=w> </span><span class=n>author</span><span class=p>)</span><span class=o>|</span><span class=w> </span><span class=p>(</span><span class=n>author</span><span class=p>,</span><span class=w> </span><span class=n>b</span><span class=p>.</span><span class=n>into_iter</span><span class=p>().</span><span class=n>map</span><span class=p>(</span><span class=o>|</span><span class=p>(</span><span class=n>_</span><span class=p>,</span><span class=w> </span><span class=n>book</span><span class=p>)</span><span class=o>|</span><span class=w> </span><span class=n>book</span><span class=p>).</span><span class=n>collect</span><span class=p>()))</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>collect</span><span class=p>();</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=fm>println!</span><span class=p>(</span><span class=s>&#34;All authors including their books: </span><span class=si>{books_per_author:?}</span><span class=s>&#34;</span><span class=p>);</span></span></span>
+					
+				</code>
+		</pre></div></div><p>As before we load all associated books by joining the books table to the query produced by <code>BookAuthor::belonging_to</code>. It is important to load the data from <code>books_authors</code> as well, as these data include the relevant mapping. The grouping is performed again with the <code>.grouped_by</code> method, similar to how this was done for the 1-to-n relations case. We now need to exclude the <code>BookAuthor</code> information in the final grouping step explicitly.</p><p>The final code for this tutorial can be found <a href=https://github.com/diesel-rs/diesel/blob/2.3.x/examples/postgres/relations>here</a>.</p></div><footer id=main-content-footer><a class=btn href=https://dumindu.github.io/diesel.rs-website/guides/all-about-updates/><span class=material-symbols-outlined>keyboard_arrow_left</span>
+<span>Previous</span>
+</a><time datetime=2026-04-15 title="Last updated: 2026-04-15"><span class=material-symbols-outlined>edit_calendar</span>
+<span>2026-04-15</span>
+</time><a class=btn href=https://dumindu.github.io/diesel.rs-website/guides/composing-applications-with-diesel/><span>Next</span>
+<span class=material-symbols-outlined>keyboard_arrow_right</span></a></footer></article><aside id=right-sidebar><div class=sidebar-controls><button id=right-sidebar-close-button class=btn aria-label="Close Page Table of Contents">
+<span aria-hidden=true class=material-symbols-outlined>close</span>
+<span>Close</span></button></div><header><h3>On this page</h3></header><nav id=TableOfContents><ul><li><a href=#new-project>New project</a></li><li><a href=#1-to-many-or-1m>1-to-many or 1:m</a></li><li><a href=#migrations>Migrations</a></li><li><a href=#schemars>Schema.rs</a></li><li><a href=#models>Models</a></li><li><a href=#reading-data>Reading data</a></li><li><a href=#joins>Joins</a><ul><li><a href=#inner-join><code>INNER JOIN</code></a></li><li><a href=#left-join><code>LEFT JOIN</code></a></li></ul></li><li><a href=#many-to-many-or-mn>many-to-many or m:n</a></li><li><a href=#migrations-1>Migrations</a></li><li><a href=#model>Model</a></li><li><a href=#reading-data-1>Reading data</a></li></ul></nav><footer><a id=back-to-top href=#>Back to top</a></footer></aside></main><footer id=site-footer><p>Copyright © 2015-2026 The Diesel Core Team</p></footer><div id=off-canvas-model></div><script src=https://dumindu.github.io/diesel.rs-website/assets/js/guides.min.a29e3bcb51ce718b844d810e277951db7d03b083efba8ce1d38150dd59c773da.js integrity></script><script src=https://dumindu.github.io/diesel.rs-website/pagefind/pagefind-component-ui.js type=module></script></body></html>

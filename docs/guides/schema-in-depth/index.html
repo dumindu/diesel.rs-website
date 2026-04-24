@@ -1,0 +1,264 @@
+<!doctype html><html lang=en-US><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=theme-color content="#535379"><meta name=robots content="/Users/nuwan/dev/learning-rust/diesel.rs-website/content/en/guides/e1.schema-in-depth.md"><title>Schema in Depth · Diesel</title><meta name=description content="Diesel is the most productive way to interact with databases in Rust because of its safe and composable abstractions over queries."><link rel=canonical href=https://dumindu.github.io/diesel.rs-website/guides/schema-in-depth/><link rel=manifest href=https://dumindu.github.io/diesel.rs-website/site.webmanifest><link rel=icon href=https://dumindu.github.io/diesel.rs-website/favicon.ico sizes=any><link rel=icon href=https://dumindu.github.io/diesel.rs-website/icon.svg type=image/svg+xml><link rel=apple-touch-icon href=https://dumindu.github.io/diesel.rs-website/apple-touch-icon.png><meta property="og:site_name" content="Diesel"><meta property="og:image" content="https://dumindu.github.io/diesel.rs-website/guides/schema-in-depth/images/og.jpg"><meta property="og:title" content="Schema in Depth"><meta property="og:description" content="Schema in Depth - Diesel is the most productive way to interact with databases in Rust because of its safe and composable abstractions over queries."><meta property="og:type" content="article"><meta property="og:url" content="https://dumindu.github.io/diesel.rs-website/guides/schema-in-depth/"><meta name=twitter:title content="Schema in Depth"><meta name=twitter:description content="Schema in Depth - Diesel is the most productive way to interact with databases in Rust because of its safe and composable abstractions over queries."><meta name=twitter:image content="https://dumindu.github.io/diesel.rs-website/guides/schema-in-depth/images/og.jpg"><meta name=twitter:card content="summary_large_image"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","headline":"Schema in Depth","description":"Schema in Depth - Diesel is the most productive way to interact with databases in Rust because of its safe and composable abstractions over queries.","image":"https:\/\/dumindu.github.io\/diesel.rs-website\/guides\/schema-in-depth\/images\/og.jpg","publisher":{"@type":"Organization","name":"Diesel","logo":{"@type":"ImageObject","url":"https:\/\/dumindu.github.io\/diesel.rs-website\/icon.svg"}},"dateModified":"2026-04-15T06:28:53Z","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/dumindu.github.io\/diesel.rs-website\/guides\/schema-in-depth\/"}}</script><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel=stylesheet><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel=stylesheet><link href=https://dumindu.github.io/diesel.rs-website/pagefind/pagefind-component-ui.css rel=stylesheet><link rel=stylesheet href=https://dumindu.github.io/diesel.rs-website/assets/css/guides.min.c828f1ee9c6292adb03168cd5ec5c17c228efec965f5690c6b413de8bb34caaf.css integrity></head><body><header id=site-header><a id=site-header-logo href=https://dumindu.github.io/diesel.rs-website/><img src=https://dumindu.github.io/diesel.rs-website/images/logo.svg alt="Diesel Logo"></a><nav id=site-header-menu aria-label=Main><a href=https://dumindu.github.io/diesel.rs-website/news/>News
+</a><a href=https://dumindu.github.io/diesel.rs-website/guides/ class=active>Guides
+</a><a href=https://dumindu.github.io/diesel.rs-website/>API Docs
+</a><a href=https://dumindu.github.io/diesel.rs-website/>Changelog</a></nav><div id=site-header-actions><div id=search-box><pagefind-modal-trigger></pagefind-modal-trigger><pagefind-modal></pagefind-modal></div><a class=repo-link href=#><img src=https://dumindu.github.io/diesel.rs-website/images/github-logo.svg alt="GitHub Logo"></a></div></header><nav id=mobile-sidebar-controls aria-label="Mobile Sidebar Controls"><button id=left-sidebar-open-button class=btn aria-label="Open Guides Menu">
+<span aria-hidden=true class=material-symbols-outlined>side_navigation</span>
+<span>On this section</span>
+</button>
+<button id=right-sidebar-open-button class=btn aria-label="Open Page Table of Contents">
+<span>On this page</span>
+<span aria-hidden=true class=material-symbols-outlined>list_alt</span></button></nav><aside id=left-sidebar><div class=sidebar-controls><button id=left-sidebar-close-button class=btn aria-label="Close Guides Menu">
+<span>Close</span>
+<span aria-hidden=true class=material-symbols-outlined>close</span></button></div><header><h2>Guides</h2><p>Diesel 2.3.7</p></header><nav id=left-sidebar-nav aria-label=Guides><details open><summary>Overview</summary><ul><li><a href=https://dumindu.github.io/diesel.rs-website/guides/compare-diesel/>Compare Diesel</a></li><li><a href=https://dumindu.github.io/diesel.rs-website/guides/diesel-2-0-migration-guide/>Diesel 2.0 migration guide</a></li></ul></details><details open><summary>Getting Started</summary><ul><li><a href=https://dumindu.github.io/diesel.rs-website/guides/getting-started-with-diesel/>Getting Started with Diesel</a></li><li><a href=https://dumindu.github.io/diesel.rs-website/guides/configuring-diesel-cli/>Configuring Diesel CLI</a></li></ul></details><details open><summary>Basics Queries</summary><ul><li><a href=https://dumindu.github.io/diesel.rs-website/guides/all-about-inserts/>All About Inserts</a></li><li><a href=https://dumindu.github.io/diesel.rs-website/guides/all-about-selects/>All About Selects</a></li><li><a href=https://dumindu.github.io/diesel.rs-website/guides/all-about-updates/>All About Updates</a></li><li><a href=https://dumindu.github.io/diesel.rs-website/guides/relations/>Relations</a></li></ul></details><details open><summary>Structure Your Application</summary><ul><li><a href=https://dumindu.github.io/diesel.rs-website/guides/composing-applications-with-diesel/>Composing Applications with Diesel</a></li><li><a href=https://dumindu.github.io/diesel.rs-website/guides/extending-diesel/>Extending Diesel</a></li></ul></details><details open><summary>Advanced Topics</summary><ul><li><a href=https://dumindu.github.io/diesel.rs-website/guides/schema-in-depth/ class=active aria-current=page>Schema in Depth</a></li></ul></details></nav></aside><main><article id=main-content aria-labelledby=main-content-heading aria-describedby=main-content-summary><header id=main-content-header><h1 id=main-content-heading>Schema in Depth</h1></header><div id=main-content-body><p>In this guide we&rsquo;re going to look at what exactly <code>diesel print-schema</code>
+and <a href=https://docs.diesel.rs/2.3.x/diesel/macro.table.html><code>table!</code></a> do. For <code>table!</code>, we will show a simplified version of the actual code
+that gets generated, and explain how each piece is relevant to you.
+If you&rsquo;ve ever been confused about what exactly is getting generated,
+or what <code>use schema::posts::dsl::*</code> means, this is the right place to be.
+Another way to get an overview of which types are available where is to open
+the API documentation of your current crate via <code>cargo doc --open</code> and navigate
+to the relevant module there.</p><p><code>diesel print-schema</code> is a command provided by Diesel CLI.
+This command will establish a database connection, query for a list of all the tables
+and their columns, and generate <code>table!</code> invocations for each one.
+<code>diesel print-schema</code> will skip any table names which start with <code>__</code> (a double underscore).
+Diesel can be configured to automatically re-run <code>diesel print-schema</code>
+whenever you run migrations. See <a href=./configuring-diesel-cli.html>Configuring Diesel CLI</a> for details.</p><p><code>table!</code> is where the bulk of the code gets generated. If you wanted to,
+you could see the actual exact code that gets generated
+by running <code>cargo +nightly rustc -- -Z unstable-options --pretty=expanded</code>.
+However, the output will be quite noisy, and there&rsquo;s a lot of code
+that won&rsquo;t actually be relevant to you.
+Instead we&rsquo;re going to go step by step through a <em>simplified</em> version of this output,
+which only has the code which you would use directly.</p><p>For this example, we&rsquo;ll look at the code generated by this <code>table!</code> invocation:</p><div class="code-window highlight"><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-rust data-lang=rust>
+					
+						<span class=line><span class=cl><span class=fm>table!</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>users</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>id</span><span class=w> </span>-&gt; <span class=nc>Integer</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>name</span><span class=w> </span>-&gt; <span class=nc>Text</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>hair_color</span><span class=w> </span>-&gt; <span class=nc>Nullable</span><span class=o>&lt;</span><span class=n>Text</span><span class=o>&gt;</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span></span></span>
+					
+				</code>
+		</pre></div></div><p>If you just want to see the full simplified code and look through it yourself,
+you will find it at the end of this guide.</p><p>The output of <code>table!</code> is always a Rust module with the same name.
+The first and most important part of this module will be the definition of the table itself:</p><div class="code-window highlight"><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-rust data-lang=rust>
+					
+						<span class=line><span class=cl><span class=k>pub</span><span class=w> </span><span class=k>struct</span> <span class=nc>table</span><span class=p>;</span></span></span>
+					
+				</code>
+		</pre></div></div><p>This is the struct that represents the user&rsquo;s table for the purpose of constructing SQL queries.
+It&rsquo;s usually referenced in code as <code>users::table</code> (or sometimes just <code>users</code>, more on that in a bit).
+Next, we&rsquo;ll see there&rsquo;s a module called <code>columns</code>, with one struct per column of the table.</p><div class="code-window highlight"><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-rust data-lang=rust>
+					
+						<span class=line><span class=cl><span class=k>pub</span><span class=w> </span><span class=k>struct</span> <span class=nc>id</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=k>pub</span><span class=w> </span><span class=k>struct</span> <span class=nc>name</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=k>pub</span><span class=w> </span><span class=k>struct</span> <span class=nc>hair_color</span><span class=p>;</span></span></span>
+					
+				</code>
+		</pre></div></div><p>Each of these structs uniquely represents each column of the table
+for the purpose of constructing SQL queries.
+Each of these structs will implement a trait called <a href=https://docs.diesel.rs/2.3.x/diesel/expression/trait.Expression.html><code>Expression</code></a>,
+which indicates the SQL type of the column.</p><div class="code-window highlight"><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-rust data-lang=rust>
+					
+						<span class=line><span class=cl><span class=k>impl</span><span class=w> </span><span class=n>Expression</span><span class=w> </span><span class=k>for</span><span class=w> </span><span class=n>id</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=k>type</span> <span class=nc>SqlType</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>Integer</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=k>impl</span><span class=w> </span><span class=n>Expression</span><span class=w> </span><span class=k>for</span><span class=w> </span><span class=n>name</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=k>type</span> <span class=nc>SqlType</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>Text</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=k>impl</span><span class=w> </span><span class=n>Expression</span><span class=w> </span><span class=k>for</span><span class=w> </span><span class=n>hair_color</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=k>type</span> <span class=nc>SqlType</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>Nullable</span><span class=o>&lt;</span><span class=n>Text</span><span class=o>&gt;</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span></span></span>
+					
+				</code>
+		</pre></div></div><p>The <code>SqlType</code> type is at the core of how Diesel ensures that your queries are correct.
+This type will be used by <a href=https://docs.diesel.rs/2.3.x/diesel/expression_methods/trait.ExpressionMethods.html><code>ExpressionMethods</code></a> to determine what things can and cannot
+be passed to methods like <code>eq</code>. It will also be used by <a href=https://docs.diesel.rs/2.3.x/diesel/deserialize/trait.Queryable.html><code>Queryable</code></a> to determine
+what types can be deserialized when this column appears in the select clause.</p><p>In the columns module you&rsquo;ll also see a special column called <code>star</code>.
+Its definition looks like this:</p><div class="code-window highlight"><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-rust data-lang=rust>
+					
+						<span class=line><span class=cl><span class=k>pub</span><span class=w> </span><span class=k>struct</span> <span class=nc>star</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=k>impl</span><span class=w> </span><span class=n>Expression</span><span class=w> </span><span class=k>for</span><span class=w> </span><span class=n>star</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=k>type</span> <span class=nc>SqlType</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>NotSelectable</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span></span></span>
+					
+				</code>
+		</pre></div></div><p>The <code>star</code> struct represents <code>users.*</code> in the query builder.
+This struct is only intended to be used for generating count queries.
+It should never be used directly. Diesel loads your data from a query by index,
+not by name. In order to ensure that we&rsquo;re actually getting the data
+for the column we think we are, Diesel never uses <code>*</code> when we actually want to
+get the data back out of it. We will instead generate an explicit select clause
+such as <code>SELECT users.id, users.name, users.hair_color</code>.</p><p>Everything in the columns module will be re-exported from the parent module.
+This is why we can reference columns as <code>users::id</code>, and not <code>users::columns::id</code>.</p><div class="code-window highlight"><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-rust data-lang=rust>
+					
+						<span class=line><span class=cl><span class=k>pub</span><span class=w> </span><span class=k>use</span><span class=w> </span><span class=bp>self</span>::<span class=n>columns</span>::<span class=o>*</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=k>pub</span><span class=w> </span><span class=k>struct</span> <span class=nc>table</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=k>pub</span><span class=w> </span><span class=k>mod</span> <span class=nn>columns</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=cm>/* ... */</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span></span></span>
+					
+				</code>
+		</pre></div></div><p>Queries can often get quite verbose when everything has to be prefixed with <code>users::</code>.
+For this reason, Diesel also provides a convenience module called <code>dsl</code>.</p><div class="code-window highlight"><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-rust data-lang=rust>
+					
+						<span class=line><span class=cl><span class=k>pub</span><span class=w> </span><span class=k>mod</span> <span class=nn>dsl</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=k>pub</span><span class=w> </span><span class=k>use</span><span class=w> </span><span class=k>super</span>::<span class=n>columns</span>::<span class=p>{</span><span class=n>id</span><span class=p>,</span><span class=w> </span><span class=n>name</span><span class=p>,</span><span class=w> </span><span class=n>hair_color</span><span class=p>};</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=k>pub</span><span class=w> </span><span class=k>use</span><span class=w> </span><span class=k>super</span>::<span class=n>table</span><span class=w> </span><span class=k>as</span><span class=w> </span><span class=n>users</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span></span></span>
+					
+				</code>
+		</pre></div></div><p>This module re-exports everything in <code>columns</code> module (except for <code>star</code>),
+and also re-exports the table but renamed to the actual name of the table.
+This means that instead of writing:</p><div class="code-window highlight"><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-rust data-lang=rust>
+					
+						<span class=line><span class=cl><span class=n>users</span>::<span class=n>table</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>filter</span><span class=p>(</span><span class=n>users</span>::<span class=n>name</span><span class=p>.</span><span class=n>eq</span><span class=p>(</span><span class=s>&#34;Sean&#34;</span><span class=p>))</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>.</span><span class=n>filter</span><span class=p>(</span><span class=n>users</span>::<span class=n>hair_color</span><span class=p>.</span><span class=n>eq</span><span class=p>(</span><span class=s>&#34;black&#34;</span><span class=p>))</span></span></span>
+					
+				</code>
+		</pre></div></div><p>we can instead write:</p><div class="code-window highlight"><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-rust data-lang=rust>
+					
+						<span class=line><span class=cl><span class=n>users</span><span class=p>.</span><span class=n>filter</span><span class=p>(</span><span class=n>name</span><span class=p>.</span><span class=n>eq</span><span class=p>(</span><span class=s>&#34;Sean&#34;</span><span class=p>)).</span><span class=n>filter</span><span class=p>(</span><span class=n>hair_color</span><span class=p>.</span><span class=n>eq</span><span class=p>(</span><span class=s>&#34;black&#34;</span><span class=p>))</span></span></span>
+					
+				</code>
+		</pre></div></div><p>The <code>dsl</code> module should only ever be imported for single functions.
+You should never have <code>use schema::users::dsl::*;</code> at the top of a module.
+Code like <code>#[derive(Insertable)]</code> will assume that <code>users</code> points to the module,
+not the table struct.</p><p>Since <code>star</code> is otherwise inaccessible if you have <code>use schema::users::dsl::*;</code>,
+it is also exposed as an instance method on the table.</p><div class="code-window highlight"><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-rust data-lang=rust>
+					
+						<span class=line><span class=cl><span class=k>impl</span><span class=w> </span><span class=n>table</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=k>pub</span><span class=w> </span><span class=k>fn</span> <span class=nf>star</span><span class=p>(</span><span class=o>&amp;</span><span class=bp>self</span><span class=p>)</span><span class=w> </span>-&gt; <span class=nc>star</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>star</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span></span></span>
+					
+				</code>
+		</pre></div></div><p>Next, there are several traits that get implemented for <code>table</code>.
+You generally will never interact with these directly,
+but they are what enable most of the query builder functions
+found in <a href=https://docs.diesel.rs/2.3.x/diesel/query_dsl/index.html>the <code>query_dsl</code> module</a>,
+as well as use with <code>insert</code>, <code>update</code>, and <code>delete</code>.</p><div class="code-window highlight"><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-rust data-lang=rust>
+					
+						<span class=line><span class=cl><span class=k>impl</span><span class=w> </span><span class=n>AsQuery</span><span class=w> </span><span class=k>for</span><span class=w> </span><span class=n>table</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=cm>/* body omitted */</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=k>impl</span><span class=w> </span><span class=n>Table</span><span class=w> </span><span class=k>for</span><span class=w> </span><span class=n>table</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=cm>/* body omitted */</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=k>impl</span><span class=w> </span><span class=n>IntoUpdateTarget</span><span class=w> </span><span class=k>for</span><span class=w> </span><span class=n>table</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=cm>/* body omitted */</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span></span></span>
+					
+				</code>
+		</pre></div></div><p>Finally, there are a few small type definitions
+and constants defined to make your life easier.</p><div class="code-window highlight"><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-rust data-lang=rust>
+					
+						<span class=line><span class=cl><span class=k>pub</span><span class=w> </span><span class=k>const</span><span class=w> </span><span class=n>all_columns</span>: <span class=p>(</span><span class=n>id</span><span class=p>,</span><span class=w> </span><span class=n>name</span><span class=p>,</span><span class=w> </span><span class=n>hair_color</span><span class=p>)</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=p>(</span><span class=n>id</span><span class=p>,</span><span class=w> </span><span class=n>name</span><span class=p>,</span><span class=w> </span><span class=n>hair_color</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=k>pub</span><span class=w> </span><span class=k>type</span> <span class=nc>SqlType</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=p>(</span><span class=n>Integer</span><span class=p>,</span><span class=w> </span><span class=n>Text</span><span class=p>,</span><span class=w> </span><span class=n>Nullable</span><span class=o>&lt;</span><span class=n>Text</span><span class=o>&gt;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=k>pub</span><span class=w> </span><span class=k>type</span> <span class=nc>BoxedQuery</span><span class=o>&lt;</span><span class=na>&#39;a</span><span class=p>,</span><span class=w> </span><span class=no>DB</span><span class=p>,</span><span class=w> </span><span class=no>ST</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>SqlType</span><span class=o>&gt;</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>BoxedSelectStatement</span><span class=o>&lt;</span><span class=na>&#39;a</span><span class=p>,</span><span class=w> </span><span class=no>ST</span><span class=p>,</span><span class=w> </span><span class=n>table</span><span class=p>,</span><span class=w> </span><span class=no>DB</span><span class=o>&gt;</span><span class=p>;</span></span></span>
+					
+				</code>
+		</pre></div></div><p><code>all_columns</code> is just a tuple of all of the column on the table.
+It is what is used to generate the <code>select</code> statement for a query on this table
+when you don&rsquo;t specify one explicitly. If you ever want to reference <code>users::star</code>
+for things that aren&rsquo;t count queries, you probably want <code>users::all_columns</code> instead.</p><p><code>SqlType</code> will be the SQL type of <code>all_columns</code>.
+It&rsquo;s rare to need to reference this directly,
+but it&rsquo;s less verbose than <code>&lt;&lt;users::table as Table>::AllColumns as Expression>::SqlType</code>
+when you need it.</p><p>Finally, there is a helper type for referencing boxed queries built from this table.
+This means that instead of writing <code>diesel::dsl::IntoBoxed&lt;'static, users::table, Pg></code>
+you can instead write <code>users::BoxedQuery&lt;'static, Pg></code>.
+You can optionally specify the SQL type as well if the query has a custom select clause.</p><p>And that&rsquo;s everything! Here is the full code that was generated for this table:</p><div class="code-window highlight"><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-rust data-lang=rust>
+					
+						<span class=line><span class=cl><span class=k>pub</span><span class=w> </span><span class=k>mod</span> <span class=nn>users</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=k>pub</span><span class=w> </span><span class=k>use</span><span class=w> </span><span class=bp>self</span>::<span class=n>columns</span>::<span class=o>*</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=k>pub</span><span class=w> </span><span class=k>mod</span> <span class=nn>dsl</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>pub</span><span class=w> </span><span class=k>use</span><span class=w> </span><span class=k>super</span>::<span class=n>columns</span>::<span class=p>{</span><span class=n>id</span><span class=p>,</span><span class=w> </span><span class=n>name</span><span class=p>,</span><span class=w> </span><span class=n>hair_color</span><span class=p>};</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>pub</span><span class=w> </span><span class=k>use</span><span class=w> </span><span class=k>super</span>::<span class=n>table</span><span class=w> </span><span class=k>as</span><span class=w> </span><span class=n>users</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=k>pub</span><span class=w> </span><span class=k>const</span><span class=w> </span><span class=n>all_columns</span>: <span class=p>(</span><span class=n>id</span><span class=p>,</span><span class=w> </span><span class=n>name</span><span class=p>,</span><span class=w> </span><span class=n>hair_color</span><span class=p>)</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=p>(</span><span class=n>id</span><span class=p>,</span><span class=w> </span><span class=n>name</span><span class=p>,</span><span class=w> </span><span class=n>hair_color</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=k>pub</span><span class=w> </span><span class=k>struct</span> <span class=nc>table</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=k>impl</span><span class=w> </span><span class=n>table</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>pub</span><span class=w> </span><span class=k>fn</span> <span class=nf>star</span><span class=p>(</span><span class=o>&amp;</span><span class=bp>self</span><span class=p>)</span><span class=w> </span>-&gt; <span class=nc>star</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=n>star</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=k>pub</span><span class=w> </span><span class=k>type</span> <span class=nc>SqlType</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=p>(</span><span class=n>Integer</span><span class=p>,</span><span class=w> </span><span class=n>Text</span><span class=p>,</span><span class=w> </span><span class=n>Nullable</span><span class=o>&lt;</span><span class=n>Text</span><span class=o>&gt;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=k>pub</span><span class=w> </span><span class=k>type</span> <span class=nc>BoxedQuery</span><span class=o>&lt;</span><span class=na>&#39;a</span><span class=p>,</span><span class=w> </span><span class=no>DB</span><span class=p>,</span><span class=w> </span><span class=no>ST</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>SqlType</span><span class=o>&gt;</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>BoxedSelectStatement</span><span class=o>&lt;</span><span class=na>&#39;a</span><span class=p>,</span><span class=w> </span><span class=no>ST</span><span class=p>,</span><span class=w> </span><span class=n>FromClause</span><span class=o>&lt;</span><span class=n>table</span><span class=o>&gt;</span><span class=p>,</span><span class=w> </span><span class=no>DB</span><span class=o>&gt;</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=k>impl</span><span class=w> </span><span class=n>AsQuery</span><span class=w> </span><span class=k>for</span><span class=w> </span><span class=n>table</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=cm>/* body omitted */</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=k>impl</span><span class=w> </span><span class=n>Table</span><span class=w> </span><span class=k>for</span><span class=w> </span><span class=n>table</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=cm>/* body omitted */</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=k>impl</span><span class=w> </span><span class=n>IntoUpdateTarget</span><span class=w> </span><span class=k>for</span><span class=w> </span><span class=n>table</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=cm>/* body omitted */</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=k>pub</span><span class=w> </span><span class=k>mod</span> <span class=nn>columns</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>pub</span><span class=w> </span><span class=k>struct</span> <span class=nc>star</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>impl</span><span class=w> </span><span class=n>Expression</span><span class=w> </span><span class=k>for</span><span class=w> </span><span class=n>star</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=k>type</span> <span class=nc>SqlType</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=p>();</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>pub</span><span class=w> </span><span class=k>struct</span> <span class=nc>id</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>impl</span><span class=w> </span><span class=n>Expression</span><span class=w> </span><span class=k>for</span><span class=w> </span><span class=n>id</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=k>type</span> <span class=nc>SqlType</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>Integer</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>pub</span><span class=w> </span><span class=k>struct</span> <span class=nc>name</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>impl</span><span class=w> </span><span class=n>Expression</span><span class=w> </span><span class=k>for</span><span class=w> </span><span class=n>name</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=k>type</span> <span class=nc>SqlType</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>Text</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>pub</span><span class=w> </span><span class=k>struct</span> <span class=nc>hair_color</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>impl</span><span class=w> </span><span class=n>Expression</span><span class=w> </span><span class=k>for</span><span class=w> </span><span class=n>hair_color</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=k>type</span> <span class=nc>SqlType</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>Nullable</span><span class=o>&lt;</span><span class=n>Text</span><span class=o>&gt;</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span></span></span>
+					
+				</code>
+		</pre></div></div></div><footer id=main-content-footer><a class=btn href=https://dumindu.github.io/diesel.rs-website/guides/extending-diesel/><span class=material-symbols-outlined>keyboard_arrow_left</span>
+<span>Previous</span>
+</a><time datetime=2026-04-15 title="Last updated: 2026-04-15"><span class=material-symbols-outlined>edit_calendar</span>
+<span>2026-04-15</span>
+</time><a class=hidden aria-hidden=true><span>Next</span>
+<span class=material-symbols-outlined>keyboard_arrow_right</span></a></footer></article><aside id=right-sidebar><div class=sidebar-controls><button id=right-sidebar-close-button class=btn aria-label="Close Page Table of Contents">
+<span aria-hidden=true class=material-symbols-outlined>close</span>
+<span>Close</span></button></div><header><h3>On this page</h3></header><nav id=TableOfContents></nav><footer><a id=back-to-top href=#>Back to top</a></footer></aside></main><footer id=site-footer><p>Copyright © 2015-2026 The Diesel Core Team</p></footer><div id=off-canvas-model></div><script src=https://dumindu.github.io/diesel.rs-website/assets/js/guides.min.a29e3bcb51ce718b844d810e277951db7d03b083efba8ce1d38150dd59c773da.js integrity></script><script src=https://dumindu.github.io/diesel.rs-website/pagefind/pagefind-component-ui.js type=module></script></body></html>
