@@ -4,8 +4,8 @@ enableRobotsTXT: true
 disableHugoGeneratorInject: true
 disableKinds: [taxonomy, term]
 
-publishDir: public
-baseURL: https://diesel.rs
+publishDir: docs
+baseURL: https://dumindu.github.io/diesel.rs-website
 
 markup:
   highlight:
