@@ -15,6 +15,7 @@
 	{{ partial "og-x-seo.html" . }}
 
 	{{ partial "fonts-and-icons.html" . }}
+	<pagefind-config bundle-path="/diesel.rs-website/pagefind/"></pagefind-config>
 	<link href="{{ "pagefind/pagefind-component-ui.css" | absURL }}" rel="stylesheet">
 
 	{{- $css_files := slice
