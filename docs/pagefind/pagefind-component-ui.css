@@ -1107,6 +1107,7 @@ pagefind-modal-trigger {
     background: var(--pf-modal-backdrop);
     overflow: hidden;
     overscroll-behavior: contain;
+    backdrop-filter: var(--blur);
 }
 
 :is(*, #\#):is(*, #\#):is(*, #\#) dialog.pf-modal[open] {
