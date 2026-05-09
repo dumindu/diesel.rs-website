@@ -4,7 +4,7 @@ enableRobotsTXT: true
 disableHugoGeneratorInject: true
 disableKinds: [taxonomy, term]
 
-publishDir: docs
+publishDir: public
 baseURL: https://dumindu.github.io/diesel.rs-website
 
 markup:
@@ -34,12 +34,16 @@ languages:
         Diesel is the most productive way to interact with databases in Rust
         because of its safe and composable abstractions over queries.
 
+caches:
+  images:
+    dir: :cacheDir/images
+
 params:
   enablePageFind: true
   analytics:
     umami:
-      id: cbfc6769-b0b4-4256-9fbc-f5c053b55bed
-      url: https://umami.weiznich.de
+      id: ~
+      url: ~
 
   project:
     startYear: 2015
