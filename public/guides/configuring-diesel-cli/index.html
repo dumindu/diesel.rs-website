@@ -1,0 +1,163 @@
+<!doctype html><html lang=en-US><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=theme-color content="#535379"><meta name=robots content="/Users/nuwan/dev/learning-rust/diesel.rs-website/content/en/guides/b2.configuring-diesel-cli.md"><title>Configuring Diesel CLI · Diesel</title><meta name=description content="Diesel is the most productive way to interact with databases in Rust because of its safe and composable abstractions over queries."><link rel=canonical href=https://dumindu.github.io/diesel.rs-website/guides/configuring-diesel-cli/><link rel=manifest href=https://dumindu.github.io/diesel.rs-website/site.webmanifest><link rel=icon href=https://dumindu.github.io/diesel.rs-website/favicon.ico sizes=any><link rel=icon href=https://dumindu.github.io/diesel.rs-website/icon.svg type=image/svg+xml><link rel=apple-touch-icon href=https://dumindu.github.io/diesel.rs-website/apple-touch-icon.png><meta property="og:site_name" content="Diesel"><meta property="og:image" content="https://dumindu.github.io/diesel.rs-website/guides/configuring-diesel-cli/images/og.jpg"><meta property="og:title" content="Configuring Diesel CLI"><meta property="og:description" content="Configuring Diesel CLI - Diesel is the most productive way to interact with databases in Rust because of its safe and composable abstractions over queries."><meta property="og:type" content="article"><meta property="og:url" content="https://dumindu.github.io/diesel.rs-website/guides/configuring-diesel-cli/"><meta name=twitter:title content="Configuring Diesel CLI"><meta name=twitter:description content="Configuring Diesel CLI - Diesel is the most productive way to interact with databases in Rust because of its safe and composable abstractions over queries."><meta name=twitter:image content="https://dumindu.github.io/diesel.rs-website/guides/configuring-diesel-cli/images/og.jpg"><meta name=twitter:card content="summary_large_image"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","headline":"Configuring Diesel CLI","description":"Configuring Diesel CLI - Diesel is the most productive way to interact with databases in Rust because of its safe and composable abstractions over queries.","image":"https:\/\/dumindu.github.io\/diesel.rs-website\/guides\/configuring-diesel-cli\/images\/og.jpg","publisher":{"@type":"Organization","name":"Diesel","logo":{"@type":"ImageObject","url":"https:\/\/dumindu.github.io\/diesel.rs-website\/icon.svg"}},"dateModified":"2026-04-15T06:28:53Z","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/dumindu.github.io\/diesel.rs-website\/guides\/configuring-diesel-cli\/"}}</script><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel=stylesheet><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel=stylesheet><pagefind-config bundle-path=/diesel.rs-website/pagefind/></pagefind-config><link href=https://dumindu.github.io/diesel.rs-website/pagefind/pagefind-component-ui.css rel=stylesheet><link rel=stylesheet href=https://dumindu.github.io/diesel.rs-website/assets/css/guides.min.4402892e2d32432374882feca3dc4a0a1a16c3ddabb37b767fb562a3dc89bf9f.css integrity></head><body><header id=site-header><a id=site-header-logo href=https://dumindu.github.io/diesel.rs-website/><img width=187px height=76px src=https://dumindu.github.io/diesel.rs-website/images/logo.svg alt="Diesel Logo"></a><nav id=site-header-menu aria-label=Main><a href=https://dumindu.github.io/diesel.rs-website/news/>News</a>
+<a href=https://dumindu.github.io/diesel.rs-website/guides/ class=active>Guides</a>
+<a href=https://docs.diesel.rs/main/diesel/index.html rel=external target=_blank>API Documentation</a>
+<a href=https://dumindu.github.io/diesel.rs-website/changelog/>Changelog</a></nav><div id=site-header-actions><div id=search-box><pagefind-modal-trigger></pagefind-modal-trigger><pagefind-modal></pagefind-modal></div><a class=repo-link href=https://github.com/diesel-rs/diesel target=_blank><img src=https://dumindu.github.io/diesel.rs-website/images/github-logo.svg alt="GitHub Logo"></a></div></header><nav id=mobile-sidebar-controls aria-label="Mobile Sidebar Controls"><button id=left-sidebar-open-button class=btn aria-label="Open Guides Menu">
+<span aria-hidden=true class=material-symbols-outlined>side_navigation</span>
+<span>On this section</span>
+</button>
+<button id=right-sidebar-open-button class=btn aria-label="Open Page Table of Contents">
+<span>On this page</span>
+<span aria-hidden=true class=material-symbols-outlined>list_alt</span></button></nav><aside id=left-sidebar><div class=sidebar-controls><button id=left-sidebar-close-button class=btn aria-label="Close Guides Menu">
+<span>Close</span>
+<span aria-hidden=true class=material-symbols-outlined>close</span></button></div><header><h2>Guides</h2><p>Diesel 2.3.9</p></header><nav id=left-sidebar-nav aria-label=Guides><details open><summary>Overview</summary><ul><li><a href=https://dumindu.github.io/diesel.rs-website/guides/compare-diesel/>Compare Diesel</a></li><li><a href=https://dumindu.github.io/diesel.rs-website/guides/diesel-2-0-migration-guide/>Diesel 2.0 migration guide</a></li></ul></details><details open><summary>Getting Started</summary><ul><li><a href=https://dumindu.github.io/diesel.rs-website/guides/getting-started-with-diesel/>Getting Started with Diesel</a></li><li><a href=https://dumindu.github.io/diesel.rs-website/guides/configuring-diesel-cli/ class=active aria-current=page>Configuring Diesel CLI</a></li></ul></details><details open><summary>Basics Queries</summary><ul><li><a href=https://dumindu.github.io/diesel.rs-website/guides/all-about-inserts/>All About Inserts</a></li><li><a href=https://dumindu.github.io/diesel.rs-website/guides/all-about-selects/>All About Selects</a></li><li><a href=https://dumindu.github.io/diesel.rs-website/guides/all-about-updates/>All About Updates</a></li><li><a href=https://dumindu.github.io/diesel.rs-website/guides/relations/>Relations</a></li></ul></details><details open><summary>Structure Your Application</summary><ul><li><a href=https://dumindu.github.io/diesel.rs-website/guides/composing-applications-with-diesel/>Composing Applications with Diesel</a></li><li><a href=https://dumindu.github.io/diesel.rs-website/guides/extending-diesel/>Extending Diesel</a></li></ul></details><details open><summary>Advanced Topics</summary><ul><li><a href=https://dumindu.github.io/diesel.rs-website/guides/schema-in-depth/>Schema in Depth</a></li></ul></details></nav></aside><main><article id=main-content aria-labelledby=main-content-heading aria-describedby=main-content-summary><header id=main-content-header><h1 id=main-content-heading>Configuring Diesel CLI</h1></header><div id=main-content-body><p>Diesel CLI is an optional tool Diesel provides to manage your
+database schema. Its main two roles are to run database
+migrations, and to create a Rust file which represents your
+database schema.</p><p>The behavior of Diesel CLI can be configured through a toml file. By
+default Diesel will look for <code>diesel.toml</code> in the same directory as
+your <code>Cargo.toml</code> file. You can provide a different config file by
+setting the <code>DIESEL_CONFIG_FILE</code> environment variable, or passing
+<code>--config-file</code> on the command line. You can get a basic config file
+with some defaults provided by running <code>diesel setup</code>.</p><p>As of Diesel 2.3, the file contains a single section,
+<code>[print_schema]</code>. All fields in this file are optional.</p><h2 id=the-file-field>The <code>file</code> field</h2><p>This field specifies the file where you want the Rust representation
+of your schema to live. When this field is present, commands which
+modify database schema (such as <code>diesel migration run</code>) will
+automatically run <code>diesel print-schema</code>, and output its results to
+this file.</p><p>This means that you can modify your database schema without having to
+worry about running a separate command to update your Rust code. It is
+highly recommended that you use this field, to ensure that the Rust
+representation of your database schema is always in sync with what is
+actually in your database. Typically this is set to <code>src/schema.rs</code>.</p><p>Unlike other fields, this doesn&rsquo;t actually modify the behavior of
+<code>diesel print-schema</code>. <code>diesel print-schema</code> will always output your
+schema to stdout, regardless of whether this field is present or not.</p><h2 id=the-with_docs-field>The <code>with_docs</code> field</h2><p>When this field is set to <code>true</code>, <code>diesel print-schema</code> will act as
+though the <code>--with-docs</code> flag was passed by default. This places a doc
+comment on all tables and columns. This comment contains either the
+information provided by the database via <code>COMMENT ON</code> annotations
+or is generated by diesel.</p><h2 id=the-filter-field>The <code>filter</code> field</h2><p>This field specifies which tables should be output by <code>diesel print-schema</code>. It corresponds to the <code>--only-tables</code> and
+<code>--except-tables</code> on the command line. Its value should be a map with
+one of those two keys. For example:</p><div class="code-window highlight"><div class=code-header><div class=traffic-lights><div class="light light-red"></div><div class="light light-yellow"></div><div class="light light-green"></div></div><span class=code-title>diesel.toml</span><div></div></div><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-toml data-lang=toml>
+					
+						<span class=line><span class=cl><span class=p>[</span><span class=nx>print_schema</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=c># This will cause only the users and posts tables to be output</span>
+</span></span><span class=line><span class=cl><span class=nx>filter</span> <span class=p>=</span> <span class=p>{</span> <span class=nx>only_tables</span> <span class=p>=</span> <span class=p>[</span><span class=s2>&#34;users&#34;</span><span class=p>,</span> <span class=s2>&#34;posts&#34;</span><span class=p>]</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c># This will cause all tables *except* the comments table to be</span>
+</span></span><span class=line><span class=cl><span class=c># output</span>
+</span></span><span class=line><span class=cl><span class=nx>filter</span> <span class=p>=</span> <span class=p>{</span> <span class=nx>except_tables</span> <span class=p>=</span> <span class=p>[</span><span class=s2>&#34;comments&#34;</span><span class=p>]</span> <span class=p>}</span></span></span>
+					
+				</code>
+		</pre></div></div><h2 id=the-schema-field>The <code>schema</code> field</h2><p>Specifies which schema to use when searching for tables. When set,
+<code>diesel print-schema</code> will always behave as though <code>--schema</code> were
+passed. This field only affects PostgreSQL. If no value is provided,
+the <code>public</code> schema will be searched.</p><h2 id=the-generate_missing_sql_type_definitions-field>The <code>generate_missing_sql_type_definitions</code> field</h2><p>This field accepts a boolean value, that configures whether <code>diesel print-schema</code>
+should generate definitions for missing sql types as part of the <code>schema.rs</code> file.
+The generated sql type definitions are placed in a separate <code>sql_types</code> module inside
+of the generated <code>schema.rs</code> file. This will generate only definitions for sql types actually
+used by any of the <code>table!</code> definitions generated by <code>diesel print-schema</code>. Those definitions
+automatically use the auto-generated sql type definition.</p><p>If this field is not present, or set to <code>true</code>
+<code>diesel print-schema</code> will generate the corresponding definitions. This configuration
+only generates custom sql type definition for PostgreSQL based database systems, as
+SQLite and MySQL are using a fixed set of sql types.</p><p>See the <code>exclude_custom_type_definitions</code> field for skipping the generation of certain custom types.</p><div class="code-window highlight"><div class=code-header><div class=traffic-lights><div class="light light-red"></div><div class="light light-yellow"></div><div class="light light-green"></div></div><span class=code-title>diesel.toml</span><div></div></div><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-toml data-lang=toml>
+					
+						<span class=line><span class=cl><span class=p>[</span><span class=nx>print_schema</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=c># skip generating missing sql type definitions</span>
+</span></span><span class=line><span class=cl><span class=nx>generate_missing_sql_type_definitions</span> <span class=p>=</span> <span class=kc>false</span></span></span>
+					
+				</code>
+		</pre></div></div><h2 id=the-custom_type_derives-field>The <code>custom_type_derives</code> field</h2><p>This field adds <code>#[derive(...)]</code> items to the sql type definitions
+automatically generated as a result of the
+<code>generate_missing_sql_type_definitions</code> field.
+When set, <code>diesel print-schema</code> will behave as if <code>--custom-type-derives</code>
+were passed. The <code>diesel::sql_types::SqlType</code> trait will be automatically
+derived if this flag is either empty, or doesn&rsquo;t already contain the trait.</p><div class="code-window highlight"><div class=code-header><div class=traffic-lights><div class="light light-red"></div><div class="light light-yellow"></div><div class="light light-green"></div></div><span class=code-title>diesel.toml</span><div></div></div><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-toml data-lang=toml>
+					
+						<span class=line><span class=cl><span class=p>[</span><span class=nx>print_schema</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=nx>generate_missing_sql_type_definitions</span> <span class=p>=</span> <span class=kc>true</span>
+</span></span><span class=line><span class=cl><span class=c># Derive `SqlType` and `Debug` for the automatically generated sql type definitions</span>
+</span></span><span class=line><span class=cl><span class=nx>custom_type_derives</span> <span class=p>=</span> <span class=p>[</span><span class=s2>&#34;diesel::sql_types::SqlType&#34;</span><span class=p>,</span> <span class=s2>&#34;std::fmt::Debug&#34;</span><span class=p>]</span></span></span>
+					
+				</code>
+		</pre></div></div><h2 id=the-except_custom_type_definitions-field>The <code>except_custom_type_definitions</code> field</h2><p>This field allows to define a list of regexes matched against custom type names for which diesel-cli should not generate sql type definitions. You should use this option in combination with <code>import_types</code> if you use crates like <code>postgis-diesel</code> or <code>pgvector</code> that provide their own sql type definition for specific custom types. If not set this defaults to an empty list.</p><div class="code-window highlight"><div class=code-header><div class=traffic-lights><div class="light light-red"></div><div class="light light-yellow"></div><div class="light light-green"></div></div><span class=code-title>diesel.toml</span><div></div></div><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-toml data-lang=toml>
+					
+						<span class=line><span class=cl><span class=p>[</span><span class=nx>print_schema</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=nx>generate_missing_sql_type_definitions</span> <span class=p>=</span> <span class=kc>true</span>
+</span></span><span class=line><span class=cl><span class=c># excludes any type named `Vector` from the generated `sql_types` module</span>
+</span></span><span class=line><span class=cl><span class=nx>except_custom_type_definitions</span> <span class=p>=</span> <span class=p>[</span><span class=s2>&#34;Vector&#34;</span><span class=p>]</span></span></span>
+					
+				</code>
+		</pre></div></div><h2 id=the-import_types-field>The <code>import_types</code> field</h2><p>This field adds <code>use</code> statements to the top of every <code>table!</code>
+declaration. When set, <code>diesel print-schema</code> will behave as if
+<code>--import-types</code> were passed. When no value is given, only types from
+<code>diesel::sql_types</code> will be imported.</p><div class="code-window highlight"><div class=code-header><div class=traffic-lights><div class="light light-red"></div><div class="light light-yellow"></div><div class="light light-green"></div></div><span class=code-title>diesel.toml</span><div></div></div><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-toml data-lang=toml>
+					
+						<span class=line><span class=cl><span class=p>[</span><span class=nx>print_schema</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=c># Add types from `diesel_full_text_search` like `tsvector`</span>
+</span></span><span class=line><span class=cl><span class=nx>import_types</span> <span class=p>=</span> <span class=p>[</span><span class=s2>&#34;diesel::sql_types::*&#34;</span><span class=p>,</span> <span class=s2>&#34;diesel_full_text_search::types::*&#34;</span><span class=p>]</span></span></span>
+					
+				</code>
+		</pre></div></div><h2 id=the-patch_file-field>The <code>patch_file</code> field</h2><p>Specifies a <code>.patch</code> file to be applied to your schema after it is
+generated. Corresponds to the <code>--patch-file</code> option on the command
+line.</p><p>We can&rsquo;t provide an option for every possible customization to this
+file that you might want to make. This serves as a general purpose
+catch-all for schema customizations.</p><p>The file should be a unified diff, which you can generate with <code>diff</code>
+or <code>git diff</code>. It&rsquo;s highly recommended that you provide more than 3
+context lines, especially if you have set <code>import_types</code>.</p><p>You can easily generate this file by making the changes you want to
+<code>schema.rs</code>, and then running <code>git diff -U6 > src/schema.patch</code>.</p><h2 id=the-sqlite_integer_primary_key_is_bigint-field>The <code>sqlite_integer_primary_key_is_bigint</code> field</h2><p>This field allows you to configure diesel-cli to thread <code>INTEGER PRIMARY KEY</code> fields as <code>BIGINT</code> for sqlite databases. If not set this defaults to false.</p><div class="code-window highlight"><div class=code-header><div class=traffic-lights><div class="light light-red"></div><div class="light light-yellow"></div><div class="light light-green"></div></div><span class=code-title>diesel.toml</span><div></div></div><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-toml data-lang=toml>
+					
+						<span class=line><span class=cl><span class=p>[</span><span class=nx>print_schema</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=nx>sqlite_integer_primary_key_is_bigint</span> <span class=p>=</span> <span class=kc>true</span></span></span>
+					
+				</code>
+		</pre></div></div><h2 id=the-allow_tables_to_appear_in_same_query_config-field>The <code>allow_tables_to_appear_in_same_query_config</code> field</h2><p>This field allows you to configure diesel-cli to generate an <code>allow_tables_to_appear_in_same_query!</code> call for all
+tables in your schema or only for those that can reasonably be joined via existing foreign key references.
+Only tables appearing in this macro call can be joined by diesel. Possible options are:</p><ul><li><code>fk_related_tables</code> only generate <code>allow_tables_to_appear_in_same_query!</code> calls for tables that can be joined via foreign key relations</li><li><code>all_tables</code> list all tables in a single <code>allow_tables_to_appear_in_same_query!</code> call (default if not set)</li><li><code>none</code> do not generate a <code>allow_tables_to_appear_in_same_query!</code> call at all</li></ul><div class="code-window highlight"><div class=code-header><div class=traffic-lights><div class="light light-red"></div><div class="light light-yellow"></div><div class="light light-green"></div></div><span class=code-title>diesel.toml</span><div></div></div><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-toml data-lang=toml>
+					
+						<span class=line><span class=cl><span class=p>[</span><span class=nx>print_schema</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=nx>allow_tables_to_appear_in_same_query_config</span> <span class=p>=</span> <span class=s2>&#34;fk_related_tables&#34;</span></span></span>
+					
+				</code>
+		</pre></div></div><h2 id=the-column_sorting-field>The <code>column_sorting</code> field</h2><p>This field allows you to configure how diesel-cli orders column names in your <code>table!</code> declarations. It allows the following options:</p><ul><li><code>ordinal_position</code> to sort by the ordinal position given by the database. Note that this might be an unstable sorting depending on your migration order. This is the default value if this field is not set.</li><li><code>name</code> to sort by the actual field name.</li></ul><div class="code-window highlight"><div class=code-header><div class=traffic-lights><div class="light light-red"></div><div class="light light-yellow"></div><div class="light light-green"></div></div><span class=code-title>diesel.toml</span><div></div></div><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-toml data-lang=toml>
+					
+						<span class=line><span class=cl><span class=p>[</span><span class=nx>print_schema</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=nx>column_sorting</span> <span class=p>=</span> <span class=s2>&#34;name&#34;</span></span></span>
+					
+				</code>
+		</pre></div></div><h2 id=the-pg_domains_as_custom_types-field>The <code>pg_domains_as_custom_types</code> field</h2><p>This field allows you to define a list of PostgreSQL domain type names that should be infered as custom SQL types by diesel-cli. This list can contain regular expressions to match on multiple domain types at once.</p><div class="code-window highlight"><div class=code-header><div class=traffic-lights><div class="light light-red"></div><div class="light light-yellow"></div><div class="light light-green"></div></div><span class=code-title>diesel.toml</span><div></div></div><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-toml data-lang=toml>
+					
+						<span class=line><span class=cl><span class=p>[</span><span class=nx>print_schema</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=nx>pg_domains_as_custom_types</span> <span class=p>=</span> <span class=p>[</span><span class=s2>&#34;int&#34;</span><span class=p>,</span> <span class=s2>&#34;longtext&#34;</span><span class=p>]</span></span></span>
+					
+				</code>
+		</pre></div></div><h2 id=nested-sub-schemas>Nested sub schemas</h2><p>Diesel-CLI allows to configure nested subschemas via <code>[print_schema.your_sub_schema]</code> entries. This allows to split up large <code>schema.rs</code> files into smaller ones or generate schema.rs files for multiple database schemas at once. Each subschema can configure all keys described above. Diesel-cli allows to configure the subschema that should be used via the <code>--schema-key</code> command line argument. If no such argument is given it default to the top level <code>[print_schema]</code> entry.</p><div class="code-window highlight"><div class=code-header><div class=traffic-lights><div class="light light-red"></div><div class="light light-yellow"></div><div class="light light-green"></div></div><span class=code-title>diesel.toml</span><div></div></div><div class=code-body><pre tabindex=0 class=chroma>
+				<code class=language-toml data-lang=toml>
+					
+						<span class=line><span class=cl><span class=c># defines a subschema `user1` including the `user1` table</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=nx>print_schema</span><span class=p>.</span><span class=nx>user1</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=nx>file</span> <span class=p>=</span> <span class=s2>&#34;src/schema1.rs&#34;</span>
+</span></span><span class=line><span class=cl><span class=nx>with_docs</span> <span class=p>=</span> <span class=kc>true</span>
+</span></span><span class=line><span class=cl><span class=nx>filter</span> <span class=p>=</span> <span class=p>{</span> <span class=nx>only_tables</span> <span class=p>=</span> <span class=p>[</span><span class=s2>&#34;users1&#34;</span><span class=p>]</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c># defines a subschema `user2` including the `user2` table</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=nx>print_schema</span><span class=p>.</span><span class=nx>user2</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=nx>file</span> <span class=p>=</span> <span class=s2>&#34;src/schema2.rs&#34;</span>
+</span></span><span class=line><span class=cl><span class=nx>with_docs</span> <span class=p>=</span> <span class=kc>true</span>
+</span></span><span class=line><span class=cl><span class=nx>filter</span> <span class=p>=</span> <span class=p>{</span> <span class=nx>only_tables</span> <span class=p>=</span> <span class=p>[</span><span class=s2>&#34;users2&#34;</span><span class=p>]</span> <span class=p>}</span></span></span>
+					
+				</code>
+		</pre></div></div></div><footer id=main-content-footer><a class=btn href=https://dumindu.github.io/diesel.rs-website/guides/getting-started-with-diesel/><span class=material-symbols-outlined>keyboard_arrow_left</span>
+<span>Previous</span>
+</a><time datetime=2026-04-15 title="Last updated: 2026-04-15"><span class=material-symbols-outlined>calendar_month</span>
+<span>2026-04-15</span>
+</time><a class=btn href=https://dumindu.github.io/diesel.rs-website/guides/all-about-inserts/><span>Next</span>
+<span class=material-symbols-outlined>keyboard_arrow_right</span></a></footer></article><aside id=right-sidebar><div class=sidebar-controls><button id=right-sidebar-close-button class=btn aria-label="Close Page Table of Contents">
+<span aria-hidden=true class=material-symbols-outlined>close</span>
+<span>Close</span></button></div><header><h3>On this page</h3></header><nav id=TableOfContents><ul><li><a href=#the-file-field>The <code>file</code> field</a></li><li><a href=#the-with_docs-field>The <code>with_docs</code> field</a></li><li><a href=#the-filter-field>The <code>filter</code> field</a></li><li><a href=#the-schema-field>The <code>schema</code> field</a></li><li><a href=#the-generate_missing_sql_type_definitions-field>The <code>generate_missing_sql_type_definitions</code> field</a></li><li><a href=#the-custom_type_derives-field>The <code>custom_type_derives</code> field</a></li><li><a href=#the-except_custom_type_definitions-field>The <code>except_custom_type_definitions</code> field</a></li><li><a href=#the-import_types-field>The <code>import_types</code> field</a></li><li><a href=#the-patch_file-field>The <code>patch_file</code> field</a></li><li><a href=#the-sqlite_integer_primary_key_is_bigint-field>The <code>sqlite_integer_primary_key_is_bigint</code> field</a></li><li><a href=#the-allow_tables_to_appear_in_same_query_config-field>The <code>allow_tables_to_appear_in_same_query_config</code> field</a></li><li><a href=#the-column_sorting-field>The <code>column_sorting</code> field</a></li><li><a href=#the-pg_domains_as_custom_types-field>The <code>pg_domains_as_custom_types</code> field</a></li><li><a href=#nested-sub-schemas>Nested sub schemas</a></li></ul></nav><footer><a id=back-to-top href=#>Back to top</a></footer></aside></main><footer id=site-footer><p>Copyright © 2015-2026 The Diesel Core Team</p></footer><div id=off-canvas-model></div><script src=https://dumindu.github.io/diesel.rs-website/assets/js/guides.min.6ab8df0e4d37ac8a2d2070b9017a259b3dfce44b7b37975d55b7e0fc0a1ad2dd.js integrity></script><script src=https://dumindu.github.io/diesel.rs-website/pagefind/pagefind-component-ui.js type=module></script></body></html>
