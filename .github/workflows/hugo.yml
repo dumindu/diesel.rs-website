@@ -1,17 +1,21 @@
-name: Deploy
+name: Hugo CI-CD
 
 on:
+  pull_request:
   push:
-    branches: [master, demo]
+    branches: [master]
 
 permissions:
   contents: read
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: false
 
     steps:
       - name: Checkout
@@ -34,9 +38,10 @@ jobs:
           ./pagefind --site public
 
       - name: Deploy
+#        if: github.repository == 'sgrif/diesel.rs-website' && github.event_name == 'push'
         uses: peaceiris/actions-gh-pages@v4
         with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: ./public
-          cname: diesel.rs
+#          cname: diesel.rs
