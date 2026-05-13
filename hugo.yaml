@@ -41,9 +41,9 @@ caches:
 params:
   enablePageFind: true
   analytics:
-    umami:
-      id: ~
-      url: ~
+    umami: ~
+#      id: cbfc6769-b0b4-4256-9fbc-f5c053b55bed
+#      url: "https://umami.weiznich.de/script.js"
 
   project:
     startYear: 2015

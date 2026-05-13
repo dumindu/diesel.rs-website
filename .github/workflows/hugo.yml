@@ -11,12 +11,6 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
-      cancel-in-progress: false
-
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -38,10 +32,10 @@ jobs:
           ./pagefind --site public
 
       - name: Deploy
-#        if: github.repository == 'sgrif/diesel.rs-website' && github.event_name == 'push'
+        if: github.repository == 'sgrif/diesel.rs-website' && github.event_name == 'push'
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           publish_branch: gh-pages
           publish_dir: ./public
-#          cname: diesel.rs
+          cname: diesel.rs

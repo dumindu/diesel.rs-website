@@ -3,25 +3,30 @@ header:
   description: Your support helps maintain Diesel and ensures it remains the best ORM for the Rust ecosystem.
 
 items:
-  - description: "[NGI Zero Core with NLNet Foundation](https://nlnet.nl/project/Diesel/)"
+  - description: "[NGI Zero Core with NLNet Foundation](https://nlnet.nl/project/Diesel/?utm_source=diesel)"
     image:
       url: images/sponsors/ngi0core.svg
       alt: NGI Zero Core
 
-  - description: "[Federal Ministry of Research, Technology and Space (Germany) with Prototype Fund](https://www.prototypefund.de/projects/diesel-databaseviews)"
+  - description: "[Federal Ministry of Research, Technology and Space (Germany) with Prototype Fund](https://www.prototypefund.de/projects/diesel-databaseviews/?utm_source=diesel)"
     image:
       url: images/sponsors/bmftr-en.svg
       alt: Federal Ministry of Research, Technology and Space (Germany) with Prototype Fund
 
-  - description: "[GitHub Secure Open Source Fund](https://github.blog/open-source/maintainers/securing-the-supply-chain-at-scale-starting-with-71-important-open-source-projects/)"
+  - description: "[GitHub Secure Open Source Fund](https://github.blog/open-source/maintainers/securing-the-supply-chain-at-scale-starting-with-71-important-open-source-projects/?utm_source=diesel)"
     image:
       url: images/sponsors/github.svg
       alt: GitHub Secure Open Source Fund
 
-  - description: "[GiGa Infosystems GmbH](https://giga-infosystems.com/)"
+  - description: "[GiGa Infosystems GmbH](https://giga-infosystems.com/?utm_source=diesel)"
     image:
       url: images/sponsors/giga.svg
       alt: GiGa Infosystems GmbH
+
+  - description: "[Bytebase - Open-source Database DevSecOps](https://bytebase.com/?utm_source=diesel)"
+    image:
+      url: images/sponsors/bytebase.svg
+      alt: Bytebase - Open-source Database DevSecOps
 
 footer:
   description: Additionally, we would like to thank all persons sponsoring the project on [GitHub](https://github.com/sponsors/weiznich#sponsors).<br>Without them developing Diesel wouldn't be possible.
